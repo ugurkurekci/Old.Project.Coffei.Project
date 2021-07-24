@@ -25,8 +25,10 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
+        [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
         [CacheRemoveAspect("ICategoryService.Get")]
+
 
         public IResult Add(Category category)
         {
@@ -38,7 +40,7 @@ namespace Business.Concrete
             _categoryDal.Add(category);
             return new SuccessResult("Kategori Eklendi.");
         }
-
+        [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
         [CacheRemoveAspect("ICategoryService.Get")]
 
@@ -47,18 +49,18 @@ namespace Business.Concrete
             _categoryDal.Delete(category);
             return new SuccessResult("Kategori Silindi.");
         }
-
         [LogAspect(typeof(DatabaseLogger))]
+        [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
         public IDataResult<List<Category>> GetAll()
         {
             Thread.Sleep(3000);
-            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(),"Kategori Listelendi.");
+            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), "Kategori Listelendi.");
         }
 
-
+        [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
         [CacheRemoveAspect("ICategoryService.Get")]
 
