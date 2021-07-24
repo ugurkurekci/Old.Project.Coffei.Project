@@ -1,12 +1,14 @@
 ﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Entities
 {
     public class Order_Documentation : IEntity
     {
+        [Key]
         public int id { get; set; }
         public DateTime orderDate { get; set; }
         public string orderType { get; set; }
