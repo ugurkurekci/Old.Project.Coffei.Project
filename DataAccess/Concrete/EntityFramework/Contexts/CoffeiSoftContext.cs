@@ -19,7 +19,7 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<Operation_Claim> Operation_Claim { get; set; }
         public DbSet<Order_Documentation> Order_Documentation { get; set; }
         public DbSet<Payment> Payment { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> User { get; set; }
         public DbSet<Payment_Documentation> Payment_Documentation { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Table> Table { get; set; }
