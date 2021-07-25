@@ -1,4 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Logging;
+using Core.Aspects.Autofac.Performance;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -19,45 +24,87 @@ namespace Business.Concrete
             _customerDal = customerDal;
         }
 
+        [LogAspect(typeof(DatabaseLogger))]
+        [LogAspect(typeof(FileLogger))]
+        [CacheRemoveAspect("ICategoryService.Get")]
+       // [SecuredOperation("Admin")]
+
+
         public IResult Add(Customer customer)
         {
-            IResult result = BusinessRules.Run(CustomerNameBlockIfSame(customer.customerName));
+            IResult result = BusinessRules.Run(CustomerPhoneBlockIfSame(customer.phone));
             if (result != null)
             {
                 return result;
             }
             _customerDal.Add(customer);
-            return new SuccessResult();
+            return new SuccessResult("Müşteri Eklendi.");
         }
+
+        [LogAspect(typeof(DatabaseLogger))]
+        [LogAspect(typeof(FileLogger))]
+        [CacheRemoveAspect("ICategoryService.Get")]
+       // [SecuredOperation("Admin")]
+
 
         public IResult Delete(Customer customer)
         {
-            throw new NotImplementedException();
+            _customerDal.Delete(customer);
+            return new SuccessResult("Müşteri Silindi.");
         }
+
+        [LogAspect(typeof(DatabaseLogger))]
+        [LogAspect(typeof(FileLogger))]
+        [PerformanceAspect(5)]
+        [CacheAspect(duration: 10)]
+      //  [SecuredOperation("Admin")]
+
 
         public IDataResult<List<Customer>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), "Müşteri Listelendi.");
         }
+
+        [LogAspect(typeof(DatabaseLogger))]
+        [LogAspect(typeof(FileLogger))]
+        [PerformanceAspect(5)]
+        [CacheAspect(duration: 10)]
+      //  [SecuredOperation("Admin")]
+
 
         public IDataResult<Customer> GetByNameAndSurname(string name, string surname)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Customer>(_customerDal.Get(p => p.customerName == name || p.customerSurname == surname), "İsim ve Soyisim Listelendi.");
         }
+
+        [LogAspect(typeof(DatabaseLogger))]
+        [LogAspect(typeof(FileLogger))]
+        [PerformanceAspect(5)]
+        [CacheAspect(duration: 10)]
+       // [SecuredOperation("Admin")]
 
         public IDataResult<Customer> GetByPhone(int phoneNumber)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Customer>(_customerDal.Get(p => p.phone == phoneNumber), "Telefon Numarası Listelendi");
         }
+
+
+        [LogAspect(typeof(DatabaseLogger))]
+        [LogAspect(typeof(FileLogger))]
+        [CacheRemoveAspect("ICategoryService.Get")]
+      //  [SecuredOperation("Admin")]
+
 
         public IResult Update(Customer customer)
         {
-            throw new NotImplementedException();
+            
+            _customerDal.Update(customer);
+            return new SuccessResult("Müşteri Güncellendi.");
         }
 
-        private IResult CustomerNameBlockIfSame(string customerName)
+        private IResult CustomerPhoneBlockIfSame(int phone)
         {
-            var resultName = _customerDal.GetAll(p => p.customerName == customerName).Any();
+            var resultName = _customerDal.GetAll(p => p.phone == phone).Any();
             if (resultName)
             {
                 return new ErrorResult("Aynı İsim Müşteri Daha Önce Eklendi. Başka Bir Müşteri Ekleyiniz .");

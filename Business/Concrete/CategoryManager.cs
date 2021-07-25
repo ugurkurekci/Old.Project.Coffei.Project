@@ -29,6 +29,7 @@ namespace Business.Concrete
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
         [CacheRemoveAspect("ICategoryService.Get")]
+        [SecuredOperation("Admin")]
 
 
         public IResult Add(Category category)
@@ -44,6 +45,8 @@ namespace Business.Concrete
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
         [CacheRemoveAspect("ICategoryService.Get")]
+        [SecuredOperation("Admin")]
+
 
         public IResult Delete(Category category)
         {
@@ -54,7 +57,7 @@ namespace Business.Concrete
         [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
-        [SecuredOperation("Admin")]
+        
 
         public IDataResult<List<Category>> GetAll()
         {
@@ -65,6 +68,8 @@ namespace Business.Concrete
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
         [CacheRemoveAspect("ICategoryService.Get")]
+        [SecuredOperation("Admin")]
+
 
         public IResult Update(Category category)
         {
