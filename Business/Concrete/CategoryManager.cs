@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Logging;
 using Core.Aspects.Autofac.Performance;
@@ -53,6 +54,7 @@ namespace Business.Concrete
         [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
+        [SecuredOperation("Admin")]
 
         public IDataResult<List<Category>> GetAll()
         {

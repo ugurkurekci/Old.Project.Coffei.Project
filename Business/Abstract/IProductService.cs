@@ -1,7 +1,9 @@
 ﻿using Core.Utilities.Results;
 using Entities;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Business.Abstract
@@ -18,6 +20,14 @@ namespace Business.Abstract
         IDataResult<Product> GetByProductName(string productName);
         IDataResult<Product> GetByProductStock(int productStock);
         IDataResult<Product> GetByProductPrice(float productPrice);
+
+
+        IDataResult<List<ProductDetailsDto>> GetRentDetails(Expression<Func<Product, bool>> filter = null);
+
+
+        IResult AddTransactionalTest(Product product);
+
+
 
 
 

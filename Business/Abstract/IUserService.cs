@@ -9,9 +9,7 @@ namespace Business.Abstract
     {
         List<Operation_Claim> GetClaims(User user);
         void Add(User user);
-        void Delete(User user);
-        void MailUpdate(string mail, User user);
         User GetByMail(string email);
-        User GetByPhone(int phone);
+
     }
 }

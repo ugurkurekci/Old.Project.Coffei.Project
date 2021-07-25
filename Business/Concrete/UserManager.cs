@@ -22,35 +22,22 @@ namespace Business.Concrete
             _userDal.Add(user);
         }
 
-        public void Delete(User user)
-        {
-            _userDal.Delete(user);
-        }
+
 
         public User GetByMail(string email)
         {
             return _userDal.Get(p => p.email == email);
         }
 
-        public User GetByPhone(int phone)
-        {
-            return _userDal.Get(p => p.phone == phone);
-        }
+
 
         public List<Operation_Claim> GetClaims(User user)
         {
             return _userDal.GetClaims(user);
         }
 
-        public void MailUpdate(string mail, User user)
-        {
-            var emailcheck = _userDal.GetAll(p => p.email == mail);
-            if (emailcheck != null)
-            {
-                _userDal.Update(user);
-            }
-        }
 
-        
+
+
     }
 }

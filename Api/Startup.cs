@@ -56,7 +56,6 @@ namespace Api
             services.AddDependencyResolvers(new ICoreModule[] {
             new CoreModule()
             });
-            services.AddMvc();
             services.AddSwaggerDocument();
 
         }
