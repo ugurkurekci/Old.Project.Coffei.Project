@@ -9,12 +9,15 @@ namespace Entities
     public class Order_Documentation : IEntity
     {
         [Key]
-        public int id { get; set; }
-        public DateTime orderDate { get; set; }
-        public string orderType { get; set; }
-        public string orderProduct { get; set; }
-        public string orderPortion { get; set; }
+        public int id { get; set; }       
+        public int orderTypeId { get; set; }
+        public int orderProductId { get; set; }
+        public int orderPortionId { get; set; }
         public int orderAmount { get; set; }
+
+        public DateTime orderDate { get; set; }
+
+
         public float orderPrice { get; set; }
         public float materialsAddPrice { get; set; }
         public float materialsAddTotalPrice { get; set; }

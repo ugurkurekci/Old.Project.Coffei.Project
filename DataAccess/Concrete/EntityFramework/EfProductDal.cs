@@ -21,7 +21,7 @@ namespace DataAccess.Concrete.EntityFramework
                              join b in contexts.Category on c.categoryId equals b.id
                              select new ProductDetailsDto
                              {
-                                 id = c.productId,
+                                 id = c.id,
                                  productName = c.productName,
                                  categoryName = b.categoryName,
                                  productImage = c.productImage

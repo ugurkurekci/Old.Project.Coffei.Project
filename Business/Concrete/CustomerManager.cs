@@ -32,7 +32,7 @@ namespace Business.Concrete
 
         public IResult Add(Customer customer)
         {
-            IResult result = BusinessRules.Run(CustomerPhoneBlockIfSame(customer.phone));
+            IResult result = BusinessRules.Run(CustomerPhoneBlockIfSame(customer.phoneId));
             if (result != null)
             {
                 return result;
@@ -85,7 +85,7 @@ namespace Business.Concrete
 
         public IDataResult<Customer> GetByPhone(int phoneNumber)
         {
-            return new SuccessDataResult<Customer>(_customerDal.Get(p => p.phone == phoneNumber), "Telefon Numarası Listelendi");
+            return new SuccessDataResult<Customer>(_customerDal.Get(p => p.phoneId == phoneNumber), "Telefon Numarası Listelendi");
         }
 
 
@@ -104,7 +104,7 @@ namespace Business.Concrete
 
         private IResult CustomerPhoneBlockIfSame(int phone)
         {
-            var resultName = _customerDal.GetAll(p => p.phone == phone).Any();
+            var resultName = _customerDal.GetAll(p => p.phoneId == phone).Any();
             if (resultName)
             {
                 return new ErrorResult("Aynı İsim Müşteri Daha Önce Eklendi. Başka Bir Müşteri Ekleyiniz .");

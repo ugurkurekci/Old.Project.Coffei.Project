@@ -9,13 +9,16 @@ namespace Entities
     public class Customer : IEntity
     {
         [Key]
-        public int phone { get; set; }
+        public int id { get; set; }
+        public int phoneId { get; set; }
+        public int emailId { get; set; }
+        public int companyId { get; set; }
+
+
         public string customerName { get; set; }
         public string customerSurname { get; set; }
-        public string customerCompany { get; set; }
         public DateTime date_of_registration { get; set; }
         public string customerCardNo { get; set; }
-        public string email { get; set; }
         public bool isActive { get; set; }
     }
 }

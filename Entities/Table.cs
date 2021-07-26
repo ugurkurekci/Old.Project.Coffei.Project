@@ -10,8 +10,8 @@ namespace Entities
     {
         [Key]
         public int id { get; set; }
-        public string tableName { get; set; }
-        public string tableLocation { get; set; }
+        public int tableNameId { get; set; }
+        public int tableLocationId { get; set; }
         public int tableCapacity { get; set; }
         public bool isActive { get; set; }
     }
