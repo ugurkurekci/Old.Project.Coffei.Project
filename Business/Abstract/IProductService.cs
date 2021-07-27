@@ -22,7 +22,7 @@ namespace Business.Abstract
         IDataResult<Product> GetByProductPrice(float productPrice);
 
 
-        IDataResult<List<ProductDetailsDto>> GetRentDetails(Expression<Func<Product, bool>> filter = null);
+        IDataResult<List<ProductDetailsDto>> GetProductDetails(Expression<Func<Product, bool>> filter = null);
 
 
         IResult AddTransactionalTest(Product product);

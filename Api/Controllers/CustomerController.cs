@@ -31,6 +31,17 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getallDetails")]
+        public IActionResult getallDetails()
+        {
+            var result = _customerService.GetCustomerDetailsDto();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
 
         [HttpGet("GetByPhone")]
         public IActionResult GetByPhone(int phoneNumber)

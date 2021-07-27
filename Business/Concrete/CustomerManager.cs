@@ -8,6 +8,7 @@ using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace Business.Concrete
 
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
-        [CacheRemoveAspect("ICategoryService.Get")]
+        [CacheRemoveAspect("ICustomerService.Get")]
        // [SecuredOperation("Admin")]
 
 
@@ -88,6 +89,10 @@ namespace Business.Concrete
             return new SuccessDataResult<Customer>(_customerDal.Get(p => p.phoneId == phoneNumber), "Telefon Numarası Listelendi");
         }
 
+        public IDataResult<List<CustomerDetailsDto>> GetCustomerDetailsDto()
+        {
+            return new SuccessDataResult<List<CustomerDetailsDto>>(_customerDal.GetCustomerDetails(), "Müşteri Listelendi.");
+        }
 
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
