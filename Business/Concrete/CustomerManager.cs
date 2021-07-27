@@ -44,7 +44,7 @@ namespace Business.Concrete
 
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
-        [CacheRemoveAspect("ICategoryService.Get")]
+        [CacheRemoveAspect("ICustomerService.Get")]
        // [SecuredOperation("Admin")]
 
 
@@ -96,7 +96,7 @@ namespace Business.Concrete
 
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
-        [CacheRemoveAspect("ICategoryService.Get")]
+        [CacheRemoveAspect("ICustomerService.Get")]
       //  [SecuredOperation("Admin")]
 
 
