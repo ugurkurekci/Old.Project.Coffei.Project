@@ -34,17 +34,18 @@ namespace Core.DataAccess.EntityFramework
 
         public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
-            using (TContext cardb = new TContext())
+            using (TContext orderdb = new TContext())
             {
-                return cardb.Set<TEntity>().SingleOrDefault(filter);
+                return orderdb.Set<TEntity>().SingleOrDefault(filter);
             }
         }
 
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
-            using (TContext cardb = new TContext())
+            using (TContext orderdb = new TContext())
             {
-                return filter == null ? cardb.Set<TEntity>().ToList() : cardb.Set<TEntity>().Where(filter).ToList();
+               return filter == null ? orderdb.Set<TEntity>().ToList() : orderdb.Set<TEntity>().Where(filter).ToList();
+
             }
         }
 

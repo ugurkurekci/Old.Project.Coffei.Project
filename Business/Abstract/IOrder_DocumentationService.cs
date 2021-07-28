@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entities;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,7 @@ namespace Business.Abstract
     public interface IOrder_DocumentationService
     {
         IDataResult<List<Order_Documentation>> GetAll();
+        IDataResult<List<Order_DocumentationDto>> GetAllDetails();
         IResult Add(Order_Documentation order_Documentation);
         IResult Delete(Order_Documentation order_Documentation);
         IResult Update(Order_Documentation order_Documentation);

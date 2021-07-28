@@ -26,13 +26,20 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<CompanyManager>().As<ICompanyService>().SingleInstance();
             builder.RegisterType<EfCompanyDal>().As<ICompanyDal>().SingleInstance();
 
+
+
+            builder.RegisterType<Order_DocumentationManager>().As<IOrder_DocumentationService>().SingleInstance();
+            builder.RegisterType<EfOrder_DocumentationDal>().As<IOrder_DocumentationDal>().SingleInstance();
+
+
+
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
 
-           
+
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

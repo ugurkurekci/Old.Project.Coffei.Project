@@ -1,33 +1,22 @@
-﻿using Core.Entities;
+﻿using Core.Entities.Abstract;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Entities
+namespace Entities.Dtos
 {
-    [Serializable]
-
-    public class Order_Documentation : IEntity
+    public class Order_DocumentationDto:IDto
     {
-        [Key]
-
-        public int id { get; set; }
-        public int orderTypeId { get; set; }
-        public int orderProductId { get; set; }
-        public int orderPortionId { get; set; }
+        public int id  { get; set; }
+        public string orderTypeName { get; set; }
+        public string orderProductName { get; set; }
+        public string orderPortionName { get; set; }
         public int orderAmount { get; set; }
-
         public DateTime orderDate { get; set; }
-
-
         public double orderPrice { get; set; }
         public double materialsAddPrice { get; set; }
         public double materialsAddTotalPrice { get; set; }
         public int discount { get; set; }
         public double totalPrice { get; set; }
-
-        
-        
     }
 }
