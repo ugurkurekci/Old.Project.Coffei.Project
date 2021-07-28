@@ -20,6 +20,7 @@ namespace Api.Controllers
         {
             _categoryService = categoryService;
         }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {

@@ -14,7 +14,7 @@ namespace Business.Abstract
         IResult Add(Payment payment);
         IResult Delete(Payment payment);
         IResult Update(Payment payment);
-        IDataResult<Payment> GetByPaymentName(string paymentName);
+        IDataResult<Payment> GetByPaymentName(int paymentName);
         IDataResult<Payment> GetById(int id);
     }
 }

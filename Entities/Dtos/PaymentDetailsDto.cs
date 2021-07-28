@@ -12,6 +12,6 @@ namespace Entities.Dtos
         public string paymentType { get; set; }
         public string paymentComment { get; set; }
         public DateTime paymentDate { get; set; }
-        public float totalPrice { get; set; }
+        public double totalPrice { get; set; }
     }
 }

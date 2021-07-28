@@ -16,7 +16,7 @@ namespace Entities.Dtos
         public double orderPrice { get; set; }
         public double materialsAddPrice { get; set; }
         public double materialsAddTotalPrice { get; set; }
-        public int discount { get; set; }
+        public double discount { get; set; }
         public double totalPrice { get; set; }
     }
 }
