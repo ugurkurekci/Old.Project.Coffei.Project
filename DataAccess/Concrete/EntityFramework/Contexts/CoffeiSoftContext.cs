@@ -17,6 +17,7 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<Company> Company { get; set; }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Email> Email { get; set; }
+        public DbSet<Email_Activation> EmailActivation { get; set; }
         public DbSet<Operation_Claim> Operation_Claim { get; set; }
         public DbSet<Order_Documentation> Order_Documentation { get; set; }
         public DbSet<Order_Portion> Order_Portion { get; set; }
