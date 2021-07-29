@@ -32,6 +32,15 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<PaymentManager>().As<IPaymentService>().SingleInstance();
             builder.RegisterType<EfPaymentDal>().As<IPaymentDal>().SingleInstance();
 
+            builder.RegisterType<TableManager>().As<ITableService>().SingleInstance();
+            builder.RegisterType<EfTableDal>().As<ITableDal>().SingleInstance();
+
+            builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
+            builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
+
+            builder.RegisterType<EmailManager>().As<IEmailService>().SingleInstance();
+            builder.RegisterType<EfEmailDal>().As<IEmailDal>().SingleInstance();
+
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 

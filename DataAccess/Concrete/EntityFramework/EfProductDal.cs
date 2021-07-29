@@ -24,7 +24,11 @@ namespace DataAccess.Concrete.EntityFramework
                                  id = c.id,
                                  productName = c.productName,
                                  categoryName = b.categoryName,
-                                 productImage = c.productImage
+                                 productImage = c.productImage,
+                                 productStock=c.productStock,
+                                 isActive=c.isActive,
+                                 productBarkodNo=c.productBarkodNo,
+                                 productPrice=c.productPrice
 
                              };
                 return result.ToList();

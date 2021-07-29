@@ -19,7 +19,7 @@ namespace Business.Abstract
 
         IDataResult<Product> GetByProductName(string productName);
         IDataResult<Product> GetByProductStock(int productStock);
-        IDataResult<Product> GetByProductPrice(float productPrice);
+        IDataResult<Product> GetByProductPrice(double productPrice);
 
 
         IDataResult<List<ProductDetailsDto>> GetProductDetails(Expression<Func<Product, bool>> filter = null);

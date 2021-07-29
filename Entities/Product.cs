@@ -15,7 +15,7 @@ namespace Entities
         public string productBarkodNo { get; set; }
         public string productImage { get; set; }
         public int productStock { get; set; }
-        public float productPrice { get; set; }
+        public double productPrice { get; set; }
         public bool isActive { get; set; }
 
     }
