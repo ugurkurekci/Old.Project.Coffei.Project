@@ -15,8 +15,8 @@ namespace Entities
         public string code { get; set; }
 
         public Email_Activation()
-        {
-            code = null;
+        {          
+            IsActive = false;
         }
     }
 }

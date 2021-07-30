@@ -40,6 +40,8 @@ namespace Api.Controllers
             }
             return BadRequest(result);
         }
+
+        
         [HttpPut("update")]
         public IActionResult Update(Email email)
         {

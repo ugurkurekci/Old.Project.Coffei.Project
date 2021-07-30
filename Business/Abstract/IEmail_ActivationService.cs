@@ -10,7 +10,8 @@ namespace Business.Abstract
     public interface IEmail_ActivationService
     {
         IDataResult<List<Email_Activation>> GetAll();
-        IResult Add(Email_Activation email_Activation,string mail);
+        IResult Add(Email_Activation email_Activation);
+        IResult Send(string mail);
 
     }
 }

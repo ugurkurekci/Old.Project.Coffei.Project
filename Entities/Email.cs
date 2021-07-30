@@ -9,5 +9,6 @@ namespace Entities
     {
         public int id { get; set; }
         public string EmailName { get; set; }
+        public string Code { get; set; }
     }
 }

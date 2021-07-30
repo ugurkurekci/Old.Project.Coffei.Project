@@ -25,44 +25,46 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
-        public IResult Add(Email_Activation email_Activation, string mail)
+        public IResult Add(Email_Activation email_Activation)
         {
-            string _OnayKodu = "";
-           
-            {
-                bool sonuc = false;
-
-                string bizimMail = "**s321@gmail.com";
-                string sifre = "**123";
-
-                Random rastgele = new Random();
-                string harfler = "ABCDEFGHIJKLMNOPRSTUVYZWX";
-                _OnayKodu = "";
-                for (int i = 0; i < 6; i++)
-                {
-                    _OnayKodu += harfler[rastgele.Next(harfler.Length)];
-                }
-                try
-                {
-                    MailMessage mesaj = new MailMessage(bizimMail, mail, "Onay Kodu", "Üyeliğinizin onalanması için geçerli onay kodunuz: '" + _OnayKodu + "'\n\n Uğur Kürekci Ekibi");
-                    SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                    smtp.EnableSsl = true;
-                    smtp.UseDefaultCredentials = true;
-                    smtp.Credentials = new NetworkCredential(bizimMail, sifre);
-                    smtp.Send(mesaj);
-                    sonuc = true;
-                }
-                catch (Exception ex)
-                {
-                    return new ErrorResult("Onay Kodu Gönderiminde Hata: " + ex.Message);
-                }
-               
-            }
-
             _email_ActivationDal.Add(email_Activation);
             return new SuccessResult("Email eklendi.");
         }
 
+        public IResult Send(string mail)
+        {
+            string Code = "";
 
+            {
+                bool result = false;
+
+                string bizimMail = "*****s321@gmail.com";
+                string sifre = "********z123";
+
+                Random rastgele = new Random();
+                string harfler = "ABCDEFGHIJKLMNOPRSTUVYZWX1234567890";
+                Code = "";
+                for (int i = 0; i < 4; i++)
+                {
+                    Code += harfler[rastgele.Next(harfler.Length)];
+                }
+
+                MailMessage mesaj = new MailMessage(bizimMail, mail, "Onay Kodu", "Üyeliğinizin onaylanması için geçerli onay kodunuz: '" + Code + "'\n\n Uğur Kürekci Ekibi");
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = true;
+                smtp.Credentials = new NetworkCredential(bizimMail, sifre);
+                smtp.Send(mesaj);
+                result = true;
+                if (Code != null)
+                {
+                    
+                    _email_ActivationDal.Add(new Email_Activation { code = Code, email = mail });
+                    return new SuccessResult(Code);
+
+                }
+            }
+            return new SuccessResult();
+        }
     }
 }

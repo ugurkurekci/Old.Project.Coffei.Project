@@ -17,10 +17,12 @@ namespace Business.Concrete
     public class EmailManager : IEmailService
     {
         IEmailDal _emailDal;
+        IEmail_ActivationDal _ActivationDal;
 
-        public EmailManager(IEmailDal emailDal)
+        public EmailManager(IEmailDal emailDal, IEmail_ActivationDal ActivationDal)
         {
             _emailDal = emailDal;
+            _ActivationDal = ActivationDal;
         }
 
         [LogAspect(typeof(DatabaseLogger))]
@@ -37,6 +39,8 @@ namespace Business.Concrete
             _emailDal.Add(email);
             return new SuccessResult("Mail eklendi.");
         }
+
+
 
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
@@ -75,7 +79,7 @@ namespace Business.Concrete
 
         private IResult EmailNameBlockIfSame(string email)
         {
-            var result = _emailDal.GetAll (p => p.EmailName == email).Any();
+            var result = _emailDal.GetAll(p => p.EmailName == email).Any();
             if (result)
             {
                 return new ErrorResult("Aynı Mail Daha Önce Eklendi. Başka Bir Mail Ekleyiniz .");
