@@ -17,5 +17,11 @@ namespace Core.Entities.Concrete
 
         [RegularExpression(@"^[2-9]\d{2}-\d{3}-\d{4}$", ErrorMessage = "Geçerli Telefon Adresi Girin.")]
         public int phone { get; set; }
+
+        public User()
+        {
+            status = false;
+        }
+
     }
 }

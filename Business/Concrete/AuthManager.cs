@@ -33,7 +33,7 @@ namespace Business.Concrete
                 lastName = userForRegisterDto.LastName,
                 passwordHash = passwordHash,
                 passwordSalt = passwordSalt,
-                status = true,
+                status = false,
 
 
             };

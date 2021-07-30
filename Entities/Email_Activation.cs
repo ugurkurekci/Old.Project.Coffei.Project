@@ -13,6 +13,7 @@ namespace Entities
         public string email { get; set; }
         public bool IsActive { get; set; }
         public string code { get; set; }
+        public string personCode { get; set; }
 
         public Email_Activation()
         {          

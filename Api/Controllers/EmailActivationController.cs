@@ -19,17 +19,10 @@ namespace Api.Controllers
         {
             _email_ActivationService = email_ActivationService;
         }
+          
 
-        [HttpPost("add")]
-        public IActionResult Add(Email_Activation email)
-        {
-            var result = _email_ActivationService.Add(email);
-            if (result!=null)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
+       
+
         [HttpPost("Send")]
         public IActionResult Send(string mail)
         {

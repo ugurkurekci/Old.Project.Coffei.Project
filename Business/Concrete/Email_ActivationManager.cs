@@ -4,6 +4,7 @@ using DataAccess.Abstract;
 using Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -15,20 +16,23 @@ namespace Business.Concrete
     {
         IEmail_ActivationDal _email_ActivationDal;
 
+
         public Email_ActivationManager(IEmail_ActivationDal email_ActivationDal)
         {
             _email_ActivationDal = email_ActivationDal;
+
         }
+
+
 
         public IDataResult<List<Email_Activation>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Email_Activation>>(_email_ActivationDal.GetAll(), "Email listelendi");
         }
 
-        public IResult Add(Email_Activation email_Activation)
+        public IDataResult<Email_Activation> GetByCode(string code)
         {
-            _email_ActivationDal.Add(email_Activation);
-            return new SuccessResult("Email eklendi.");
+            return new SuccessDataResult<Email_Activation>(_email_ActivationDal.Get(p => p.code == code), "Email Code geldi.");
         }
 
         public IResult Send(string mail)
@@ -38,8 +42,8 @@ namespace Business.Concrete
             {
                 bool result = false;
 
-                string bizimMail = "*****s321@gmail.com";
-                string sifre = "********z123";
+                string bizimMail = "*******s321@gmail.com";
+                string sifre = "*******z123";
 
                 Random rastgele = new Random();
                 string harfler = "ABCDEFGHIJKLMNOPRSTUVYZWX1234567890";
@@ -58,7 +62,7 @@ namespace Business.Concrete
                 result = true;
                 if (Code != null)
                 {
-                    
+
                     _email_ActivationDal.Add(new Email_Activation { code = Code, email = mail });
                     return new SuccessResult(Code);
 
@@ -66,5 +70,7 @@ namespace Business.Concrete
             }
             return new SuccessResult();
         }
+        
+
     }
 }
