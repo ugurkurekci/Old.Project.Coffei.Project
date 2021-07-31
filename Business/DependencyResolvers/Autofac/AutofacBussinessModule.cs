@@ -38,6 +38,12 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
 
+            builder.RegisterType<Order_PortionManager>().As<IOrder_PortionService>().SingleInstance();
+            builder.RegisterType<EfOrder_PortionDal>().As<IOrder_PortionDal>().SingleInstance();
+
+            builder.RegisterType<Order_TypeManager>().As<IOrder_TypeService>().SingleInstance();
+            builder.RegisterType<EfOrder_TypeDal>().As<IOrder_TypeDal>().SingleInstance();
+
             builder.RegisterType<EmailManager>().As<IEmailService>().SingleInstance();
             builder.RegisterType<EfEmailDal>().As<IEmailDal>().SingleInstance();
 
