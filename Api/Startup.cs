@@ -3,21 +3,17 @@ using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
+using DataAccess.Concrete.EntityFramework.Contexts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Api
 {
@@ -35,7 +31,11 @@ namespace Api
         {
             services.AddControllers();
             services.AddCors();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpClient<IHttpContextAccessor, HttpContextAccessor>();
+
+
+
+
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -70,16 +70,11 @@ namespace Api
 
             app.ConfigureCustomExceptionMiddleware();
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200", "http://localhost:6831").AllowAnyHeader().AllowAnyMethod());
-
-            app.UseHttpsRedirection();
-
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200", "http://localhost:6831", "http://localhost:44354", "http://localhost:5003", "http://localhost:5004").AllowAnyHeader().AllowAnyMethod());
             app.UseRouting();
-
+            app.UseHttpsRedirection();
             app.UseOpenApi();
             app.UseSwaggerUi3();
-
-
             app.UseAuthentication();
 
             app.UseAuthorization();

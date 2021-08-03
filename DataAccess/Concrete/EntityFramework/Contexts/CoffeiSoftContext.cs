@@ -9,10 +9,20 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
 {
     public class CoffeiSoftContext : DbContext
     {
+        public CoffeiSoftContext()
+        {
+
+        }
+
+        public CoffeiSoftContext(DbContextOptions<CoffeiSoftContext> options) : base(options) { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-B8EAQ1H;Database=CoffeiSoft;Trusted_Connection=true");
         }
+
+
+
         public DbSet<Category> Category { get; set; }
         public DbSet<Company> Company { get; set; }
         public DbSet<Customer> Customer { get; set; }
@@ -33,4 +43,5 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<Table_Name> Table_Name { get; set; }
         public DbSet<User_Operation_Claim> User_Operation_Claim { get; set; }
     }
+
 }

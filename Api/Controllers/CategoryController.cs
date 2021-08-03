@@ -22,6 +22,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("getall")]
+        
         public IActionResult GetAll()
         {
             var result = _categoryService.GetAll();
