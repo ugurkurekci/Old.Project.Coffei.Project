@@ -53,10 +53,10 @@ namespace Business.Concrete
             _categoryDal.Delete(category);
             return new SuccessResult("Kategori Silindi.");
         }
-        [LogAspect(typeof(DatabaseLogger))]
-        [LogAspect(typeof(FileLogger))]
-        [PerformanceAspect(5)]
-        [CacheAspect(duration: 10)]
+        //[LogAspect(typeof(DatabaseLogger))]
+        //[LogAspect(typeof(FileLogger))]
+        // [PerformanceAspect(5)]
+        // [CacheAspect(duration: 10)]
 
 
         public IDataResult<List<Category>> GetAll()

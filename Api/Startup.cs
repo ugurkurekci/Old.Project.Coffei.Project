@@ -1,3 +1,4 @@
+using Castle.DynamicProxy;
 using Core.DependencyResolver;
 using Core.Extensions;
 using Core.Utilities.IoC;
@@ -13,7 +14,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-
+using Newtonsoft.Json;
+using System;
+using System.Diagnostics;
 
 namespace Api
 {
@@ -30,11 +33,15 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddCors();
-            services.AddHttpClient<IHttpContextAccessor, HttpContextAccessor>();
-
-
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigin",
+                    builder => builder.WithOrigins("http://localhost:4200", "http://localhost:6831", "http://localhost:44354", "http://localhost:5003", "http://localhost:5004", "http://localhost:5004"));
+            });
+            services.AddAuthentication();
+            services.AddLogging();
+            services.AddDbContext<CoffeiSoftContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CoffeiSoftContext")));
+            services.AddMvc();
 
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
@@ -75,16 +82,15 @@ namespace Api
             app.UseHttpsRedirection();
             app.UseOpenApi();
             app.UseSwaggerUi3();
+
             app.UseAuthentication();
-
-            app.UseAuthorization();
-
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
             app.UseStaticFiles();
+
         }
     }
 }
