@@ -1,9 +1,14 @@
+using Business.Abstract;
+using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.DependencyResolver;
 using Core.Extensions;
+using Core.Utilities.Interceptors;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFramework.Contexts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -17,6 +22,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
+using System.Net.Http;
 
 namespace Api
 {
@@ -32,16 +38,14 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllers();
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin",
-                    builder => builder.WithOrigins("http://localhost:4200", "http://localhost:6831", "http://localhost:44354", "http://localhost:5003", "http://localhost:5004", "http://localhost:5004"));
+                    builder => builder.WithOrigins("http://localhost:4200", "http://localhost:6831", "http://localhost:44354", "http://localhost:5003", "http://localhost:5004", "http://localhost:5000"));
             });
-            services.AddAuthentication();
-            services.AddLogging();
-            services.AddDbContext<CoffeiSoftContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CoffeiSoftContext")));
-            services.AddMvc();
+           
 
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
