@@ -42,8 +42,8 @@ namespace Business.Concrete
             {
                 bool result = false;
 
-                string bizimMail = "*******s321@gmail.com";
-                string sifre = "*******z123";
+                string bizimMail = "farketmes321@gmail.com";
+                string sifre = "farketmez123";
 
                 Random rastgele = new Random();
                 string harfler = "ABCDEFGHIJKLMNOPRSTUVYZWX1234567890";
