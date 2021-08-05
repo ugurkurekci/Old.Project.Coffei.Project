@@ -3,6 +3,8 @@ using Business.Concrete;
 using Core.DependencyResolver;
 using Core.Extensions;
 using Core.Utilities.IoC;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +34,7 @@ namespace NetCoreWebMvc
             services.AddDependencyResolvers(new ICoreModule[] {
             new CoreModule()
             });
+            services.AddSingleton<IContactService, ContactManager>();
             services.AddSingleton<ICategoryService, CategoryManager>();
         }
 

@@ -35,6 +35,10 @@ namespace Business.Concrete
             return new SuccessDataResult<Email_Activation>(_email_ActivationDal.Get(p => p.code == code), "Email Code geldi.");
         }
 
+
+
+
+
         public IResult Send(string mail)
         {
             string Code = "";
@@ -70,7 +74,28 @@ namespace Business.Concrete
             }
             return new SuccessResult();
         }
-        
 
+
+        public IResult Info(string contact)
+        {
+            {
+                string bizimMail = "farketmes321@gmail.com";
+                string sifre = "farketmez123";
+                MailMessage mesaj = new MailMessage(bizimMail, contact, "Bizim iletişim kurduğunuz için teşekkürler.", "Yakın zaman içerisinde mesajınıza geri dönüş sağlanacaktır. '" + contact + "'\n\n Uğur Kürekci Ekibi");
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = true;
+                smtp.Credentials = new NetworkCredential(bizimMail, sifre);
+                smtp.Send(mesaj);
+                if (contact != null)
+                {
+
+                    _email_ActivationDal.Add(new Email_Activation { email = contact });
+                    return new SuccessResult();
+
+                }
+            }
+            return new SuccessResult();
+        }
     }
 }

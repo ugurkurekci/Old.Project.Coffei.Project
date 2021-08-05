@@ -47,6 +47,8 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EmailManager>().As<IEmailService>().SingleInstance();
             builder.RegisterType<EfEmailDal>().As<IEmailDal>().SingleInstance();
 
+            builder.RegisterType<ContactManager>().As<IContactService>().SingleInstance();
+            builder.RegisterType<EfContactDal>().As<IContactDal>().SingleInstance();
             builder.RegisterType<Email_ActivationManager>().As<IEmail_ActivationService>().SingleInstance();
             builder.RegisterType<EfEmail_ActivationDal>().As<IEmail_ActivationDal>().SingleInstance();
 

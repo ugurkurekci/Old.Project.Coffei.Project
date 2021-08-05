@@ -1,0 +1,43 @@
+﻿@using Entities
+@model List<Category>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayaout.cshtml";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Ad</th>
+        <th>Durum</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.id</td>
+            <td>@item.categoryName</td>
+            <td>@item.isActive</td>
+
+
+        </tr>
+
+    }
+
+</table>
+<br />
+<a href="/Category/AddCategory" class="btn btn-info">Yeni Kategori</a>
+
+
+
+
+
+
+
+

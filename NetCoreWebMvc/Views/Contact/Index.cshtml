@@ -1,6 +1,7 @@
-﻿
+﻿@using Entities
+@model Contact
 @{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,43 +12,58 @@
         <div class="card-body row">
             <div class="col-5 text-center d-flex align-items-center justify-content-center">
                 <div class="">
-                    <h2>CoffeiSo<strong>FT</strong></h2>
+                    <h2>CoffeİSoft<strong>FT</strong></h2>
                     <p class="lead mb-5">
                         Istanbul/Turkey<br>
                         Phone: +00 000 000 00 00
                     </p>
                 </div>
             </div>
-            <div class="col-7">
+
+
+
+            <form asp-action="ContactSend" formmethod="post">
+
                 <div class="form-group">
                     <label for="inputName">Name</label>
-                    <input type="text" id="inputName" class="form-control" />
+                    <input asp-for="name" title="sa" type="text" id="inputText" class="form-control" />
+                    <span asp-validation-for="name" class="text-danger"></span>
+
                 </div>
                 <div class="form-group">
                     <label for="inputEmail">E-Mail</label>
-                    <input type="email" id="inputEmail" class="form-control" />
+                    <input asp-for="email" type="email" id="inputEmail" class="form-control" />
+                    <span asp-validation-for="email" class="text-danger"></span>
+
+
                 </div>
                 <div class="form-group">
                     <label for="inputSubject">Subject</label>
-                    <input type="text" id="inputSubject" class="form-control" />
+                    <input asp-for="subject" type="text" id="inputSubject" class="form-control" />
+                    <span asp-validation-for="subject" class="text-danger"></span>
+
+
                 </div>
                 <div class="form-group">
                     <label for="inputMessage">Message</label>
-                    <textarea id="inputMessage" class="form-control" rows="4"></textarea>
+                    <textarea id="inputMessage" class="form-control" rows="4" asp-for="message"></textarea>
+                    <span asp-validation-for="message" class="text-danger"></span>
+
+
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Send message">
+                    <input type="submit" class="btn btn-primary" value="Mesajı Gönder">
+
                 </div>
-            </div>
+
+            </form>
+
+
+
+
+
         </div>
     </div>
 
 </section>
 
-<style type="text/css">
-
-    .content {
-       display:inline;
-       
-    }
-</style>

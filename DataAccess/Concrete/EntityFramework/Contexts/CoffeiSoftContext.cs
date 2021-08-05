@@ -25,6 +25,7 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
 
         public DbSet<Category> Category { get; set; }
         public DbSet<Company> Company { get; set; }
+        public DbSet<Contact> Contact { get; set; }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Email> Email { get; set; }
         public DbSet<Email_Activation> EmailActivation { get; set; }

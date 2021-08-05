@@ -14,5 +14,7 @@ namespace Business.Abstract
         IDataResult<Email_Activation> GetByCode(string code);
         IResult Send(string mail);
 
+        IResult Info(string contact);
+
     }
 }
