@@ -53,6 +53,9 @@ namespace Business.Concrete
             _categoryDal.Delete(category);
             return new SuccessResult("Kategori Silindi.");
         }
+
+        
+
         //[LogAspect(typeof(DatabaseLogger))]
         //[LogAspect(typeof(FileLogger))]
         // [PerformanceAspect(5)]
@@ -63,6 +66,11 @@ namespace Business.Concrete
         {
             Thread.Sleep(3000);
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), "Kategori Listelendi.");
+        }
+
+        public IDataResult<Category> GetByid(int id)
+        {
+            return new SuccessDataResult<Category>(_categoryDal.Get(p => p.id == id), "Mesaj ID Listelendi.");
         }
 
         [LogAspect(typeof(DatabaseLogger))]

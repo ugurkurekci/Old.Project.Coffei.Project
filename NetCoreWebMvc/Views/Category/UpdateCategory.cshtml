@@ -1,21 +1,22 @@
 ﻿@model Entities.Category
 
 @{
-    ViewData["Title"] = "AddCategory";
+    ViewData["Title"] = "UpdateCategory";
     Layout = "~/Views/Shared/_AdminLayaout.cshtml";
 }
 
-<h1>Kategori Ekle</h1>
+<h1>Kategori Güncelle</h1>
 <br />
 <br />
 
 
 
-<form asp-action="Added" formmethod="post" id="btn-1">
+<form asp-controller="Category" asp-action="Updated" asp-route-id="id">
+
 
     <div class="form-group">
         <label for="inputName">Kategori Adı</label>
-        <input asp-for="categoryName" title="sa" type="text" id="inputText" class="form-control" />
+        <input asp-for="categoryName" type="text" id="inputText" class="form-control" />
         <span asp-validation-for="categoryName" class="text-danger"></span>
 
     </div>
@@ -26,8 +27,8 @@
 
 
     </div>
-    <div class="form-group" id="btn-1">
-        <input type="submit" class="btn btn-primary" id="btn-1" value="Gönder">
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Gönder">
 
     </div>
 
@@ -41,8 +42,3 @@
 
 
 </div>
-
-
-
-
-
