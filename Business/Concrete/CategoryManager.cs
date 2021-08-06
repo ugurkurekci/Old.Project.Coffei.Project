@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
+using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Logging;
 using Core.Aspects.Autofac.Performance;
@@ -29,6 +30,8 @@ namespace Business.Concrete
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
         [CacheRemoveAspect("ICategoryService.Get")]
+        [ValidationAspect(typeof(CategoryValidator))]
+
         // [SecuredOperation("Admin")]
 
 
@@ -54,7 +57,7 @@ namespace Business.Concrete
             return new SuccessResult("Kategori Silindi.");
         }
 
-        
+
 
         //[LogAspect(typeof(DatabaseLogger))]
         //[LogAspect(typeof(FileLogger))]

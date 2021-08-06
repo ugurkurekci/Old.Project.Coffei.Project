@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
+using Business.ValidationRules.FluentValidation;
 using DataAccess.Concrete.EntityFramework;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +25,9 @@ namespace NetCoreWebMvc.Controllers
 
 
         [HttpGet]
-        public IActionResult Index(int page=1)
+        public IActionResult Index(int page = 1)
         {
-            var result = _categoryService.GetAll().Data.ToPagedList(page,5);
+            var result = _categoryService.GetAll().Data.ToPagedList(page, 5);
             return View(result);
         }
 
@@ -35,23 +36,37 @@ namespace NetCoreWebMvc.Controllers
         public IActionResult Added(Category category)
         {
             var result = _categoryService.Add(category);
-            if (result.Success)
+
+            if (result != null)
             {
-                return RedirectToAction("Index");
+                if (result.Success)
+                {
+                    return RedirectToAction("Index");
+                }
+
             }
-            return RedirectToAction("Index");
+
+            return RedirectToAction("AddCategory");
+
+
 
         }
 
-        [HttpPut]
-        public IActionResult Updated(Category category)
+        [HttpPost]
+        public IActionResult Updated(Category category, int id)
         {
+            var id2 = _categoryService.GetByid(id);
+            id2.Data.id = category.id;
+            id2.Data.categoryName = category.categoryName;
+            id2.Data.isActive = category.isActive;
+
+
             var update = _categoryService.Update(category);
             if (update.Success)
             {
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("UpdateCategory");
 
 
         }
@@ -59,6 +74,7 @@ namespace NetCoreWebMvc.Controllers
         {
 
             return View();
+
         }
 
         public IActionResult UpdateCategory()

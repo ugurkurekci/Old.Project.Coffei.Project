@@ -43,11 +43,13 @@ namespace Business.Concrete
         {
             string Code = "";
 
+
             {
-                bool result = false;
+
 
                 string bizimMail = "farketmes321@gmail.com";
                 string sifre = "farketmez123";
+                bool result = false;
 
                 Random rastgele = new Random();
                 string harfler = "ABCDEFGHIJKLMNOPRSTUVYZWX1234567890";

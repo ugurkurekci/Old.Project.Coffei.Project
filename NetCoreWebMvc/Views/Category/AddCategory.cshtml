@@ -13,9 +13,10 @@
 
 <form asp-action="Added" formmethod="post" id="btn-1">
 
-    <div class="form-group">
+    <div class="form-group" asp-validation-summary="All">
         <label for="inputName">Kategori Adı</label>
-        <input asp-for="categoryName" title="sa" type="text" id="inputText" class="form-control" />
+        
+        <input asp-for="categoryName"  type="text" id="inputText" class="form-control" required/>
         <span asp-validation-for="categoryName" class="text-danger"></span>
 
     </div>
