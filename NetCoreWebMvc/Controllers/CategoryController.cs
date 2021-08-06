@@ -22,12 +22,21 @@ namespace NetCoreWebMvc.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult Index(int page = 1)
+
+        public IActionResult Index(string name, int page = 1)
         {
+
+
             var result = _categoryService.GetAll().Data.ToPagedList(page, 10);
+            if (!String.IsNullOrEmpty(name))
+            {
+                return View(_categoryService.GetByCategoryName(name));
+
+            }
             return View(result);
         }
+
+
 
 
         [HttpPost]
@@ -67,22 +76,23 @@ namespace NetCoreWebMvc.Controllers
             return RedirectToAction("Index");
 
         }
-        
+
         public IActionResult Deleted(int id)
         {
 
             var id2 = _categoryService.GetByid(id).Data;
             _categoryService.Delete(id2);
             return RedirectToAction("Index");
-
-
         }
+
+
+
 
 
         public IActionResult Add()
         {
             return View();
-           
+
 
         }
 
@@ -90,10 +100,6 @@ namespace NetCoreWebMvc.Controllers
         {
             return View();
         }
-
-
-
-
 
 
 

@@ -71,9 +71,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), "Kategori Listelendi.");
         }
 
+        public IDataResult<Category> GetByCategoryName(string categoryName)
+        {
+            return new SuccessDataResult<Category>(_categoryDal.Get(p => p.categoryName == categoryName), "Kategoriler Listelendi.");
+        }
+
         public IDataResult<Category> GetByid(int id)
         {
-            return new SuccessDataResult<Category>(_categoryDal.Get(p => p.id == id), "Mesaj ID Listelendi.");
+            return new SuccessDataResult<Category>(_categoryDal.Get(p => p.id == id), "Kategori ID Listelendi.");
         }
 
         [LogAspect(typeof(DatabaseLogger))]
