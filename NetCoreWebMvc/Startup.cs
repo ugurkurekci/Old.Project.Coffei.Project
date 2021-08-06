@@ -31,7 +31,6 @@ namespace NetCoreWebMvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddToastify(config => { config.DurationInSeconds = 5; config.Position = Position.Right; config.Gravity = Gravity.Bottom; });
 
             services.AddControllersWithViews();
             services.AddDependencyResolvers(new ICoreModule[] {
@@ -66,7 +65,10 @@ namespace NetCoreWebMvc
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+         
+
             });
+
         }
     }
 }

@@ -11,12 +11,12 @@
 
 
 
-<form asp-controller="Category" asp-action="Updated" asp-route-id="id">
+<form asp-action="Updated" formmethod="post">
 
 
     <div class="form-group">
         <label for="inputName">Kategori ID</label>
-        <input asp-for="id" type="number" class="form-control" disabled  />
+        <input asp-for="id" type="number" class="form-control"  />
         <span asp-validation-for="id" class="text-danger"></span>
 
     </div>

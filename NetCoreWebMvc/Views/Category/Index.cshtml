@@ -7,7 +7,7 @@
 
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] ="Index";
     Layout = "~/Views/Shared/_AdminLayaout.cshtml";
 }
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -16,7 +16,6 @@
 <a href="/Category/AddCategory" class="btn btn-info">Yeni Kategori</a>
 <br />
 <br />
-
 <div id="jsGrid1" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
     <div class="jsgrid-grid-header jsgrid-header-scrollbar">
         <table class="jsgrid-table">
@@ -36,7 +35,7 @@
                     <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"><input type="checkbox" asp-for="@item.isActive" name="@item.isActive" disabled></td>
 
                     <td><a href="/Category/UpdateCategory/@item.id" class="btn btn-warning">Güncelle</a></td>
-                    <td><a href="#@item.id" class="btn btn-danger">Sil</a></td>
+                    <td><a href="/Category/Deleted/@item.id" class="btn btn-danger">Sil</a></td>
 
 
                 </tr>

@@ -21,7 +21,7 @@ namespace NetCoreWebMvc.Controllers
             _categoryService = categoryService;
         }
 
-        CategoryManager manager = new CategoryManager(new EfCategoryDal());
+       
 
 
         [HttpGet]
@@ -55,29 +55,40 @@ namespace NetCoreWebMvc.Controllers
         [HttpPost]
         public IActionResult Updated(Category category, int id)
         {
-            var id2 = _categoryService.GetByid(id);
-            id2.Data.id = category.id;
-            id2.Data.categoryName = category.categoryName;
-            id2.Data.isActive = category.isActive;
-
 
             var update = _categoryService.Update(category);
+            var id2 = _categoryService.GetByid(id).Data;
             if (update.Success)
             {
+
+                id2.id = category.id;
+                id2.categoryName = category.categoryName.Trim();
+                id2.isActive = category.isActive;
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("UpdateCategory");
-
+            return RedirectToAction("Index");
 
         }
-        public IActionResult AddCategory()
+        
+        public IActionResult Deleted(int id)
         {
 
-            return View();
+            var id2 = _categoryService.GetByid(id).Data;
+            _categoryService.Delete(id2);
+            return RedirectToAction("Index");
+
 
         }
 
-        public IActionResult UpdateCategory()
+
+        public IActionResult AddCategory()
+        {
+            return View();
+           
+
+        }
+
+        public IActionResult UpdateCategory(int id)
         {
             return View();
         }
