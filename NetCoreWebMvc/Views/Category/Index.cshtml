@@ -2,53 +2,64 @@
 @using X.PagedList
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Web.Common
+
 @model IPagedList<Category>
 
-
-
 @{
-    ViewData["Title"] ="Index";
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayaout.cshtml";
 }
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 
-<a href="/Category/AddCategory" class="btn btn-info">Yeni Kategori</a>
+<a href="/Category/Add" class="btn btn-info">Yeni Kategori</a>
 <br />
 <br />
-<div id="jsGrid1" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
-    <div class="jsgrid-grid-header jsgrid-header-scrollbar">
-        <table class="jsgrid-table">
-            <tr class="jsgrid-header-row">
-                <th>Id </th>
-                <th>Ad</th>
-                <th>Durum</th>
-                <th>Güncelle</th>
-                <th>Sil</th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr class="jsgrid-alt-row">
-                    <td>@item.id</td>
-                    <td>@item.categoryName</td>
-                    <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"><input type="checkbox" asp-for="@item.isActive" name="@item.isActive" disabled></td>
-
-                    <td><a href="/Category/UpdateCategory/@item.id" class="btn btn-warning">Güncelle</a></td>
-                    <td><a href="/Category/Deleted/@item.id" class="btn btn-danger">Sil</a></td>
 
 
+<div class="card-body">
+    <div id="jsGrid1" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+        <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+            <table class="jsgrid-table">
+                <tr class="jsgrid-header-row">
+                    <th>Id </th>
+                    <th>Ad</th>
+                    <th>Durum</th>
+                    <th>Güncelle</th>
+                    <th>Sil</th>
                 </tr>
 
-            }
+                @foreach (var item in Model)
+                {
+                    <tr class="jsgrid-alt-row">
+                        <td>@item.id</td>
+                        <td>@item.categoryName</td>
+                        <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"><input type="checkbox" asp-for="@item.isActive" name="@item.isActive" disabled></td>
 
-        </table>
-        <br />
+                        <td><a href="/Category/Update/@item.id" class="btn btn-warning">Güncelle</a></td>
+                        <td><a href="/Category/Deleted/@item.id" class="btn btn-danger">Sil</a></td>
 
-        <div class="pull-right">
-            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+                    </tr>
+
+                }
+
+            </table>
+            <br />
 
         </div>
+        <br />
+        <br />
+        <div class="pull-right">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }),
+            new PagedListRenderOptions
+            {
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+            Display = PagedListDisplayMode.IfNeeded
+
+            })
+        </div>
+
     </div>
 </div>
 

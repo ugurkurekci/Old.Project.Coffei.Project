@@ -21,13 +21,11 @@ namespace NetCoreWebMvc.Controllers
             _categoryService = categoryService;
         }
 
-       
-
 
         [HttpGet]
         public IActionResult Index(int page = 1)
         {
-            var result = _categoryService.GetAll().Data.ToPagedList(page, 5);
+            var result = _categoryService.GetAll().Data.ToPagedList(page, 10);
             return View(result);
         }
 
@@ -81,14 +79,14 @@ namespace NetCoreWebMvc.Controllers
         }
 
 
-        public IActionResult AddCategory()
+        public IActionResult Add()
         {
             return View();
            
 
         }
 
-        public IActionResult UpdateCategory(int id)
+        public IActionResult Update(int id)
         {
             return View();
         }

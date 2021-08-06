@@ -31,7 +31,7 @@ namespace NetCoreWebMvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddMvcCore();
             services.AddControllersWithViews();
             services.AddDependencyResolvers(new ICoreModule[] {
             new CoreModule()
@@ -60,14 +60,21 @@ namespace NetCoreWebMvc
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints => //Core 3.1 ile beraber artýk yönlendiremeler bu þekilde yapýlýyor.
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-         
+                endpoints.MapAreaControllerRoute(
+
+                    name: "Admin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}" //Admin areas sayfa yönlendirmesi.
+                    );
+
+                endpoints.MapDefaultControllerRoute(); //Home Controller Index Sayfasý
+
 
             });
+
+
 
         }
     }
