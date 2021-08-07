@@ -2,9 +2,11 @@
 @using X.PagedList
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Web.Common
+@using X.PagedList.Mvc.Core.Fluent
 
 
-@model  IPagedList<Category>
+
+@model IPagedList<Category>
 
 @{
     ViewData["Title"] = "Index";
@@ -20,53 +22,85 @@
 <h3>KATEGORİ LİSTESİ</h3>
 <hr />
 
+<section class="content">
+    <div class="container-fluid">
+        <h2 class="text-center display-4">Search</h2>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form asp-action="Search" formmethod="post">
 
-<div class="card-body">
-    <div id="jsGrid1" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
-        <div class="jsgrid-grid-header jsgrid-header-scrollbar">
-            <table class="jsgrid-table">
-                <tr class="jsgrid-header-row">
-                    <th>Id </th>
-                    <th>Ad</th>
-                    <th>Durum</th>
-                    <th>Güncelle</th>
-                    <th>Sil</th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
-                    <tr class="jsgrid-alt-row">
-                        <td>@item.id</td>
-                        <td>@item.categoryName</td>
-                        <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"><input type="checkbox" asp-for="@item.isActive" name="@item.isActive" disabled></td>
-
-                        <td><a href="/Category/Update/@item.id" class="btn btn-warning">Güncelle</a></td>
-                        <td><a href="/Category/Deleted/@item.id" class="btn btn-danger">Sil</a></td>
-
-                    </tr>
-
-                }
-
-            </table>
-            <br />
-
+                    <div class="input-group">
+                        <input type="text" name="search" id="search" class="form-control" />
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-lg btn-default">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <br />
-        <br />
-        <div class="pull-right">
-            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }),
-            new PagedListRenderOptions
-            {
-            LiElementClasses = new string[] { "page-item" },
-            PageClasses = new string[] { "page-link" },
-            Display = PagedListDisplayMode.IfNeeded
-
-            })
-        </div>
-
     </div>
+</section>
+
+
+
+
+<div>
+
 </div>
 
+
+
+<form method="get">
+    <div class="card-body">
+        <div id="jsGrid1" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+            <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                <table class="jsgrid-table">
+                    <tr class="jsgrid-header-row">
+                        <th>Id </th>
+                        <th>Ad</th>
+                        <th>Durum</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr class="jsgrid-alt-row">
+                            <td>@item.id</td>
+                            <td>@item.categoryName</td>
+                            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"><input type="checkbox" asp-for="@item.isActive" name="@item.isActive" disabled></td>
+
+                            <td><a href="/Category/Update/@item.id" class="btn btn-warning">Güncelle</a></td>
+                            <td><a href="/Category/Deleted/@item.id" class="btn btn-danger">Sil</a></td>
+
+                        </tr>
+
+                    }
+
+                </table>
+
+                <br />
+
+            </div>
+            <br />
+            <br />
+
+            <div class="pull-right">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }),
+                new PagedListRenderOptions
+                {
+                LiElementClasses = new string[] { "page-item" },
+                PageClasses = new string[] { "page-link" },
+                Display = PagedListDisplayMode.IfNeeded
+
+                })
+            </div>
+
+        </div>
+    </div>
+</form>
 
 
 

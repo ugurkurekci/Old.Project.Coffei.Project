@@ -1,4 +1,3 @@
-using AspNetCoreHero.ToastNotification;
 using Business.Abstract;
 using Business.Concrete;
 using Core.DependencyResolver;
@@ -36,8 +35,11 @@ namespace NetCoreWebMvc
             services.AddDependencyResolvers(new ICoreModule[] {
             new CoreModule()
             });
+
             services.AddSingleton<IContactService, ContactManager>();
             services.AddSingleton<ICategoryService, CategoryManager>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

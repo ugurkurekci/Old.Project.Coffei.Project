@@ -5,10 +5,14 @@ using DataAccess.Concrete.EntityFramework;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using Core.Utilities.Results;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using X.PagedList;
+using X.PagedList.Mvc.Core.Fluent;
+using X.PagedList.Web.Common;
+
 
 namespace NetCoreWebMvc.Controllers
 {
@@ -23,17 +27,26 @@ namespace NetCoreWebMvc.Controllers
 
 
 
-        public IActionResult Index(string name, int page = 1)
+        public ActionResult Index(int page = 1)
         {
 
-
             var result = _categoryService.GetAll().Data.ToPagedList(page, 10);
-            if (!String.IsNullOrEmpty(name))
-            {
-                return View(_categoryService.GetByCategoryName(name));
-
-            }
             return View(result);
+
+        }
+
+
+        [HttpPost]
+        public ActionResult Search(string search)
+        {
+            if (!string.IsNullOrEmpty(search))
+            {
+                var get = _categoryService.GetByCategoryName(search).Data;
+                return RedirectToAction("Index",get);
+            }
+            return View("Index");
+
+
         }
 
 

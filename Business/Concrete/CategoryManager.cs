@@ -76,6 +76,8 @@ namespace Business.Concrete
             return new SuccessDataResult<Category>(_categoryDal.Get(p => p.categoryName == categoryName), "Kategoriler Listelendi.");
         }
 
+       
+
         public IDataResult<Category> GetByid(int id)
         {
             return new SuccessDataResult<Category>(_categoryDal.Get(p => p.id == id), "Kategori ID Listelendi.");
