@@ -25,30 +25,17 @@ namespace NetCoreWebMvc.Controllers
             _categoryService = categoryService;
         }
 
-
-
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(string searching, int page = 1)
         {
+            if (!string.IsNullOrEmpty(searching))
+            {
+                var get = _categoryService.GetByCategoryName(searching).Data.ToPagedList(page, 10);
+                return View(get);
+            }
 
             var result = _categoryService.GetAll().Data.ToPagedList(page, 10);
             return View(result);
-
         }
-
-
-        [HttpPost]
-        public ActionResult Search(string search)
-        {
-            if (!string.IsNullOrEmpty(search))
-            {
-                var get = _categoryService.GetByCategoryName(search).Data;
-                return RedirectToAction("Index",get);
-            }
-            return View("Index");
-
-
-        }
-
 
 
 

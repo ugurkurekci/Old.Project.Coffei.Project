@@ -10,7 +10,7 @@ namespace Business.Abstract
     {
         IDataResult<List<Category>> GetAll();
         IDataResult<Category> GetByid(int id);
-        IDataResult<Category> GetByCategoryName(string categoryName);
+        IDataResult<List<Category>> GetByCategoryName(string categoryName);
         IResult Add(Category category);
         IResult Delete(Category category);
         IResult Update(Category category);

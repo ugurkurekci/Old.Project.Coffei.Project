@@ -22,10 +22,20 @@ namespace Api.Controllers
         }
 
         [HttpGet("getall")]
-        
+
         public IActionResult GetAll()
         {
             var result = _categoryService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("GetByCategoryName")]
+        public IActionResult GetByCategoryName(string search)
+        {
+            var result = _categoryService.GetByCategoryName(search);
             if (result.Success)
             {
                 return Ok(result);
