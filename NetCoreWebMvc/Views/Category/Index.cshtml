@@ -9,87 +9,91 @@
 @model IPagedList<Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Kategori Listesi";
     Layout = "~/Views/Shared/_AdminLayaout.cshtml";
 }
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 
-<a href="/Category/Add" class="btn btn-info">Yeni Kategori</a>
-<br />
-<br />
-<hr />
-<h3>KATEGORİ LİSTESİ</h3>
-<hr />
+
+
+
+<div class="alert alert-default-info text text-right" role="alert">
+    <h3>Kategori Listesinden Ara</h3>
+    <form class="form-inline" asp-action="Index" formmethod="get">
+        <input class="form-control" type="search" placeholder="Ara" name="searching" id="searching"
+               aria-label="Search">
+        <div class="input-group-btn">
+            <button type="submit" class="btn btn-outline my-2 my-sm-0">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+
+
+    </form><br />
+    @if (!string.IsNullOrEmpty(ViewBag.searchmessage))
+    {
+        <p>@ViewBag.searchmessage</p>
+
+    }
+    @if (!string.IsNullOrEmpty(ViewBag.notsearchmessage))
+    {
+        <p>@ViewBag.notsearchmessage</p>
+    }
+</div>
+
+<div class="alert alert-default-light,text text-right" role="alert">
+    <a href="/Category/Add" class="btn btn-success">Yeni Kategori</a>
+</div>
 
 
 <div>
-
 </div>
 
-<section class="content">
-    <div class="container-fluid">
-        <h2 class="text-center display-4">Search</h2>
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <form asp-action="Index" formmethod="get">
 
-                    <div class="input-group">
-                        <input type="text" name="searching" id="searching" class="form-control" />
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-lg btn-default">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
+<div class="container">
+    <div class="row">
 
 
-
-
-<div id="jsGrid1" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
-    <div class="jsgrid-grid-header jsgrid-header-scrollbar">
-       
-        <table class="table table-striped">
-            <thead>
+        <table class="table table-borderless">
+            <thead style="color:indianred;background-color:antiquewhite;font-family:'Times New Roman', Times, serif">
                 <tr>
-                    <th>Id </th>
-                    <th>Ad</th>
-                    <th>Durum</th>
-                    <th>Güncelle</th>
-                    <th>Sil</th>
+                    <th scope="row"># </th>
+                    <th scope="row">Kategori Ad</th>
+                    <th scope="row">Durum</th>
+                    <th scope="row">Operation</th>
+                    <th scope="row">Operation</th>
                 </tr>
             </thead>
-            <tbody>
 
-                @if (Model.Count() == 0)
-                {
-                    <tr>
-                        <td colspan="3" style="color:red">Veri yok</td>
-                    </tr>
-                }
-                else
-                {
-                    foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.id</td>
-                            <td>@item.categoryName</td>
-                            <td>@item.isActive</td>
-                            <td><a href="/Category/Update/@item.id" class="btn btn-warning">Güncelle</a></td>
-                            <td><a href="/Category/Deleted/@item.id" class="btn btn-danger">Sil</a></td>
-                        </tr>
-                    }
-                }
 
-            </tbody>
+
+
+
+            @foreach (var item in Model)
+            {
+                <tr class="table-active">
+                    <td style="color: red; background-color: ghostwhite; font-size: initial; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@item.id</td>
+                    <td style="color: black; background-color: ghostwhite; font-size: initial; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@item.categoryName</td>
+                    <td style="color: black; background-color: ghostwhite">@item.isActive</td>
+                    <td style="background-color:ghostwhite"><a href="/Category/Update/@item.id" class="btn btn-outline-warning" style="color: red;font-family:'Times New Roman', Times, serif ">Güncelle</a></td>
+                    <td style="background-color:ghostwhite"><a href="/Category/Deleted/@item.id" class="btn btn-danger" style="color: white;font-family:'Times New Roman', Times, serif ">Sil</a></td>
+                </tr>
+
+            }
+
+
         </table>
 
-        <br />
+        <div class="container">
+            <div class="alert alert-success" role="alert">
+                @if (!string.IsNullOrEmpty(ViewBag.message))
+                {
+                    <p>@ViewBag.message</p>
+                }
+            </div>
+            
+        </div>
 
     </div>
     <br />
@@ -107,9 +111,3 @@
     </div>
 
 </div>
-
-
-
-
-
-

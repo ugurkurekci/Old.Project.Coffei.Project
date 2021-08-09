@@ -30,11 +30,21 @@ namespace NetCoreWebMvc.Controllers
             if (!string.IsNullOrEmpty(searching))
             {
                 var get = _categoryService.GetByCategoryName(searching).Data.ToPagedList(page, 10);
+                ViewBag.searchmessage = "Aranan Kelime Listelendi";
                 return View(get);
+            }
+            else
+            {
+                ViewBag.notsearchmessage = "Aranan Kelime Bulunamadı";
+
             }
 
             var result = _categoryService.GetAll().Data.ToPagedList(page, 10);
+            ViewBag.message = "Veri yüklendi, Listelendi";
+            
+
             return View(result);
+
         }
 
 
