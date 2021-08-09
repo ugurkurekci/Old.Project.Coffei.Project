@@ -40,8 +40,8 @@ namespace NetCoreWebMvc.Controllers
             }
 
             var result = _categoryService.GetAll().Data.ToPagedList(page, 10);
-            ViewBag.message = "Veri yüklendi, Listelendi";
-            
+            ViewBag.message = "Success, listelendi";
+
 
             return View(result);
 
@@ -52,18 +52,23 @@ namespace NetCoreWebMvc.Controllers
         [HttpPost]
         public IActionResult Added(Category category)
         {
-            var result = _categoryService.Add(category);
 
-            if (result != null)
+            if (ModelState.IsValid)
             {
-                if (result.Success)
-                {
-                    return RedirectToAction("Index");
-                }
+                var result = _categoryService.Add(category);
 
+                if (result != null)
+                {
+                    if (result.Success)
+                    {
+                        ViewBag.addedsucces = "Kategori Eklendi.";
+                        return View("Add");
+                    }
+
+                }
             }
 
-            return RedirectToAction("AddCategory");
+            return RedirectToAction("Add");
 
 
 

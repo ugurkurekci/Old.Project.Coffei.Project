@@ -10,19 +10,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="~/plugins/sweetalert2/sweetalert2.min.css">
-   
-    <link href="~/plugins/toastr/toastr.css" rel="stylesheet" />
-    <link href="~/plugins/toastr/toastr.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
-    <script src="~/js/toastr.js"></script>
     <link href="~/plugins/toastr/toastr.min.css" rel="stylesheet" />
     <link href="~/plugins/toastr/toastr.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/plugins/jsgrid/jsgrid.min.css">
-    <link rel="stylesheet" href="~/plugins/jsgrid/jsgrid-theme.min.css">
-    <link href="~/plugins/chart.js/Chart.min.css" rel="stylesheet" />
-
+    <link href="~/css/Admin/adminsidebar.css" rel="stylesheet" />
+    <link href="~/plugins/bootstrap-slider/css/bootstrap-slider.min.css" rel="stylesheet" />
+    <link href="~/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
+    <link href="~/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-reboot.min.css" rel="stylesheet" />
 </head>
 <body>
+
+
 
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
@@ -53,7 +54,7 @@
                     </div>
                 </div>
             </div>
-           
+
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="btn btn-outline-success"><a href="/Admin/Index">Dashboard</a></li>
@@ -62,14 +63,16 @@
 
                 </ul>
             </nav>
-           
+
         </div>
-      
+
     </aside>
 
 
+
+
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-0">
             <br /><br />
             @RenderBody()
         </main>
@@ -87,6 +90,7 @@
     <script src="~/plugins/toastr/toastr.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
     <script src="~/plugins/jquery/jquery.min.js"></script>
