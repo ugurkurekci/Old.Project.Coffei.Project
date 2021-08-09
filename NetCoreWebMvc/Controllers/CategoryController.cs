@@ -53,6 +53,8 @@ namespace NetCoreWebMvc.Controllers
         public IActionResult Added(Category category)
         {
 
+
+
             if (ModelState.IsValid)
             {
                 var result = _categoryService.Add(category);
@@ -62,6 +64,11 @@ namespace NetCoreWebMvc.Controllers
                     if (result.Success)
                     {
                         ViewBag.addedsucces = "Kategori Eklendi.";
+                        return View("Add");
+                    }
+                    else
+                    {
+                        ViewBag.notsuccess = "Kategori Eklenemedi.";
                         return View("Add");
                     }
 
