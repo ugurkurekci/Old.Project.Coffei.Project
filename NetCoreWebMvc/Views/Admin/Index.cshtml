@@ -1,24 +1,37 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Gösterme Paneli";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<div class="row">
+<div class="row col-8">
     <div class="col-lg-3 col-6">
-        
-        <div class="small-box bg-danger">
-            <div class="inner">
-                <h3 style="color:white">@ViewBag.r1</h3>
 
-                <p  style="color:white"> Kategori Sayısı</p>
+        <div class="small-box bg-gradient-success" style="text-align:center">
+            <div class="inner" style="text-align:center">
+                <h3 style="color:black" ;>  @ViewBag.r1</h3>
+
+                <p style="color:black"> Kategori Sayısı</p>
             </div>
             <div class="icon">
                 <i class="ion ion-bag"></i>
             </div>
-            <a href="Category/Index" class="small-box-footer"> Detaylı<i class="fas fa-arrow-circle-right"></i></a>
+            <a href="../Category/Index" style="text-decoration:none;  color:black" class="small-box-footer "> Detaylı <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
-   
-   
-    
+
+    <div class="col-lg-3 col-6">
+
+        <div class="small-box bg-gradient-danger" style="text-align:center">
+            <div class="inner" style="text-align:center">
+                <h3 style="color:black" ;>  @ViewBag.r2</h3>
+
+                <p style="color:black"> Firma Sayısı</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-bag"></i>
+            </div>
+            <a href="../Company/Index" style="text-decoration:none;  color:black" class="small-box-footer "> Detaylı <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
 </div>

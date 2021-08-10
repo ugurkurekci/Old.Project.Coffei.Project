@@ -10,7 +10,7 @@
 <form asp-action="Added" formmethod="post">
 
     <div class="form-group" asp-validation-summary="All">
-        <label for="inputName">Kategori Adı</label>
+        <label for="inputName">Firma Adı</label>
 
         <input asp-for="companyName" type="text" id="inputText" class="form-control" required />
         <span asp-validation-for="companyName" class="text-danger"></span>
@@ -36,7 +36,7 @@
 <div class="form-group">
 
 
-    <a href="/Category/Index" class="btn btn-info">Listeye Geri Dön</a>
+    <a href="/Company/Index" class="btn btn-info">Listeye Geri Dön</a>
 
 
 </div>

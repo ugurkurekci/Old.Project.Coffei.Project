@@ -71,6 +71,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), "Kategori Listelendi.");
         }
 
+      
         public IDataResult<List<Category>> GetByCategoryName(string categoryName)
         {
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(p => p.categoryName == categoryName), "Kategoriler Listelendi.");
