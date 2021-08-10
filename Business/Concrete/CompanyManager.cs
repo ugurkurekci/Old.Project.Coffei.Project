@@ -68,9 +68,9 @@ namespace Business.Concrete
         [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
-        public IDataResult<Company> GetByCompanyName(string companyName)
+        public IDataResult<List<Company>> GetByCompanyName(string companyName)
         {
-            return new SuccessDataResult<Company>(_companyDal.Get(p => p.companyName == companyName), "Aranan Firma Listelendi.");
+            return new SuccessDataResult<List<Company>>(_companyDal.GetAll(p => p.companyName == companyName), "Aranan Firma Listelendi.");
 
         }
 

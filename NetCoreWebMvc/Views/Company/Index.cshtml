@@ -5,17 +5,14 @@
 @using X.PagedList.Mvc.Core.Fluent
 
 
-
-@model IPagedList<Category>
-
+@model IPagedList<Company>
 @{
-    ViewData["Title"] = "Kategori Listesi";
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-
 <div class="alert alert-default-light,text text-right" role="alert">
-    <a href="/Category/Add" class="btn btn-success">Yeni Kategori</a>
+    <a href="/Company/Add" class="btn btn-success">Yeni Firma</a>
 </div>
 
 
@@ -56,8 +53,7 @@
             <thead style="color:indianred;background-color:antiquewhite;font-family:'Times New Roman', Times, serif">
                 <tr>
                     <th scope="row"># </th>
-                    <th scope="row">Kategori Ad</th>
-                    <th scope="row">Durum</th>
+                    <th scope="row">Şirket Ad</th>                   
                     <th scope="row">Operation</th>
                     <th scope="row">Operation</th>
 
@@ -69,10 +65,9 @@
             {
                 <tr class="table-active">
                     <td style="color: red; background-color: ghostwhite; font-size: initial; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@item.id</td>
-                    <td style="color: black; background-color: ghostwhite; font-size: initial; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@item.categoryName</td>
-                    <td style="color: black; background-color: ghostwhite">@item.isActive</td>
-                    <td style="background-color:ghostwhite"><a href="/Category/Update/@item.id" class="btn btn-outline-warning" style="color: red;font-family:'Times New Roman', Times, serif ">Güncelle</a></td>
-                    <td style="background-color:ghostwhite"><a href="/Category/Deleted/@item.id" class="btn btn-danger" style="color: white;font-family:'Times New Roman', Times, serif ">Sil</a></td>
+                    <td style="color: black; background-color: ghostwhite; font-size: initial; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@item.companyName</td>
+                    <td style="background-color:ghostwhite"><a href="/Company/Update/@item.id" class="btn btn-outline-warning" style="color: red;font-family:'Times New Roman', Times, serif ">Güncelle</a></td>
+                    <td style="background-color:ghostwhite"><a href="/Company/Deleted/@item.id" class="btn btn-danger" style="color: white;font-family:'Times New Roman', Times, serif ">Sil</a></td>
                 </tr>
             }
         </table>
@@ -91,5 +86,6 @@
 
     })
 </div>
+
 
 

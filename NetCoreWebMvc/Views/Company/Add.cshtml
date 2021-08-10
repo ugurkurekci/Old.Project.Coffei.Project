@@ -1,0 +1,45 @@
+﻿@model Entities.Company
+
+@{
+    ViewData["Title"] = "Firma Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Firma Ekle</h1>
+
+<form asp-action="Added" formmethod="post">
+
+    <div class="form-group" asp-validation-summary="All">
+        <label for="inputName">Kategori Adı</label>
+
+        <input asp-for="companyName" type="text" id="inputText" class="form-control" required />
+        <span asp-validation-for="companyName" class="text-danger"></span>
+
+    </div>
+   
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Gönder">
+
+    </div>
+
+</form>
+@if (!string.IsNullOrEmpty(ViewBag.addedsucces))
+{
+    <p class="align-content-lg-between">@ViewBag.addedsucces</p>
+}
+@if (!string.IsNullOrEmpty(ViewBag.notsuccess))
+{
+    <p class="align-content-lg-between">@ViewBag.notsuccess</p>
+}
+
+
+<div class="form-group">
+
+
+    <a href="/Category/Index" class="btn btn-info">Listeye Geri Dön</a>
+
+
+</div>
+
+
+

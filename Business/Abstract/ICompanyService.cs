@@ -10,7 +10,7 @@ namespace Business.Abstract
     {
         IDataResult<List<Company>> GetAll();
         IDataResult<Company> GetById(int id);
-        IDataResult<Company> GetByCompanyName(string companyName);
+        IDataResult<List<Company>> GetByCompanyName(string companyName);
         IResult Add(Company company);
         IResult Delete(Company company);
         IResult Update(Company company);
