@@ -42,6 +42,20 @@ namespace Api.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("GetByIsActiveName")]
+        public IActionResult GetByIsActiveName(bool operation)
+        {
+            var result = _categoryService.GetByIsActive(operation);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+
+
         [HttpPost("add")]
         public IActionResult Add(Category category)
         {

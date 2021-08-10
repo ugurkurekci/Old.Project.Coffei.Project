@@ -108,6 +108,12 @@ namespace NetCoreWebMvc.Controllers
         }
 
 
+        
+        public PartialViewResult Notification(bool operation)
+        {
+
+            return PartialView(_categoryService.GetByIsActive(operation).Data);
+        }
 
 
 

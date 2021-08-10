@@ -11,6 +11,7 @@ namespace Business.Abstract
         IDataResult<List<Category>> GetAll();
         IDataResult<Category> GetByid(int id);
         IDataResult<List<Category>> GetByCategoryName(string categoryName);
+        IDataResult<List<Category>> GetByIsActive(bool operation);
         IResult Add(Category category);
         IResult Delete(Category category);
         IResult Update(Category category);

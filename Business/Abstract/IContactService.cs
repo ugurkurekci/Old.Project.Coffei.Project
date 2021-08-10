@@ -12,7 +12,7 @@ namespace Business.Abstract
         IResult Add(Contact contact);
         IResult Delete(Contact contact);
         IResult Update(Contact contact);
-        IDataResult<Contact> GetByEmail(string email);
+        IDataResult<List<Contact>> GetByEmail(string email);
         IDataResult<Contact> GetByid(int id);
 
 

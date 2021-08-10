@@ -1,69 +1,98 @@
 ﻿@using Entities
-@model Contact
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@using X.PagedList.Mvc.Core.Fluent
+@model IPagedList<Contact>
+
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<section class="content">
-
-
-    <div class="card">
-        <div class="card-body row">
-            <div class="col-5 text-center d-flex align-items-center justify-content-center">
-                <div class="">
-                    <h2>CoffeİSoft<strong>FT</strong></h2>
-                    <p class="lead mb-5">
-                        Istanbul/Turkey<br>
-                        Phone: +00 000 000 00 00
-                    </p>
-                </div>
-            </div>
+<div class="alert alert-default-light,text text-right" role="alert">
+    <a href="/Contact/Add" class="btn btn-success">Yeni Mesaj</a>
+</div>
 
 
 
-            <form asp-action="ContactSend" formmethod="post">
+<div class="container-fluid">
+    <div class="row">
 
-                <div class="form-group">
-                    <label for="inputName">Name</label>
-                    <input asp-for="name" title="sa" type="text" id="inputText" class="form-control" />
-                    <span asp-validation-for="name" class="text-danger"></span>
+        <div class="container-fluid">
 
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail">E-Mail</label>
-                    <input asp-for="email" type="email" id="inputEmail" class="form-control" />
-                    <span asp-validation-for="email" class="text-danger"></span>
+            <nav class="navbar navbar-expand-lg">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-4">
+                    </ul>
 
+                    <form class="form-inline my-2 my-lg-0" asp-action="Index" formmethod="get">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Ara" name="searching" id="searching"
+                               aria-label="Search">
+                        <div class="input-group-btn,align-content-lg-end">
+                            <button type="submit" class="btn btn-outline my-2 my-sm-0">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
 
-                </div>
-                <div class="form-group">
-                    <label for="inputSubject">Subject</label>
-                    <input asp-for="subject" type="text" id="inputSubject" class="form-control" />
-                    <span asp-validation-for="subject" class="text-danger"></span>
+                    </form>
+                    @if (!string.IsNullOrEmpty(ViewBag.searchmessage))
+                    {
+                        <p class="align-content-lg-between">@ViewBag.searchmessage</p>
 
+                    }
 
                 </div>
-                <div class="form-group">
-                    <label for="inputMessage">Message</label>
-                    <textarea id="inputMessage" class="form-control" rows="4" asp-for="message"></textarea>
-                    <span asp-validation-for="message" class="text-danger"></span>
-
-
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Mesajı Gönder">
-
-                </div>
-
-            </form>
-
-
-
-
-
+            </nav>
         </div>
-    </div>
+        <table class="table table-hover">
+            <thead style="color:indianred;background-color:antiquewhite;font-family:'Times New Roman', Times, serif">
+                <tr>
+                    <th scope="row"># </th>
+                    <th scope="row">İsim</th>
+                    <th scope="row">Email</th>
+                    <th scope="row">Konu</th>
+                    <th scope="row">Mesaj</th>
+                    <th scope="row">Operation</th>
+                    <th scope="row">Operation</th>
 
-</section>
+                </tr>
+
+            </thead>
+
+            @foreach (var item in Model)
+            {
+        <tr class="table-active">
+            <td style="color: red; background-color: ghostwhite; font-size: initial; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@item.id</td>
+            <td style="color: black; background-color: ghostwhite; font-size: initial; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@item.name</td>
+            <td style="color: black; background-color: ghostwhite; font-size: initial; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@item.email</td>
+            <td style="color: black; background-color: ghostwhite; font-size: initial; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@item.subject</td>
+            <td style="color: black; background-color: ghostwhite; font-size: initial; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@item.message</td>
+            <td style="background-color:ghostwhite"><a href="/Contact/Update/@item.id" class="btn btn-outline-warning" style="color: red;font-family:'Times New Roman', Times, serif ">Güncelle</a></td>
+            <td style="background-color:ghostwhite"><a href="/Contact/Deleted/@item.id" class="btn btn-danger" style="color: white;font-family:'Times New Roman', Times, serif ">Sil</a></td>
+        </tr>
+            }
+        </table>
+
+    </div>
+</div>
+
+
+<div class="pull-right">
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }),
+    new PagedListRenderOptions
+    {
+    LiElementClasses = new string[] { "page-item" },
+    PageClasses = new string[] { "page-link" },
+    Display = PagedListDisplayMode.IfNeeded
+
+    })
+</div>
+
+
+
+
 

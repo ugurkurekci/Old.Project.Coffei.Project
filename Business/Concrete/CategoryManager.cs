@@ -84,6 +84,11 @@ namespace Business.Concrete
             return new SuccessDataResult<Category>(_categoryDal.Get(p => p.id == id), "Kategori ID Listelendi.");
         }
 
+        public IDataResult<List<Category>> GetByIsActive(bool operation)
+        {
+            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(p => p.isActive == operation), "Kategoriler Listelendi.");
+        }
+
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
         [CacheRemoveAspect("ICategoryService.Get")]

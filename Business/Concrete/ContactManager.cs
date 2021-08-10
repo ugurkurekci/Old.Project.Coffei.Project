@@ -60,9 +60,9 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Contact> GetByEmail(string email)
+        public IDataResult<List<Contact>> GetByEmail(string email)
         {
-            return new SuccessDataResult<Contact>(_contactDal.Get(p => p.email == email), "Mesaj ID Listelendi.");
+            return new SuccessDataResult<List<Contact>>(_contactDal.GetAll(p => p.email == email), "Mesaj ID Listelendi.");
         }
 
 
