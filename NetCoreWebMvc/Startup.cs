@@ -32,6 +32,7 @@ namespace NetCoreWebMvc
         {
             services.AddMvcCore();
             services.AddControllersWithViews();
+
             services.AddDependencyResolvers(new ICoreModule[] {
             new CoreModule()
             });

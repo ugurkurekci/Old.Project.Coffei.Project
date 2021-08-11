@@ -10,7 +10,7 @@ namespace Business.ValidationRules.FluentValidation
     {
         public CategoryValidator()
         {
-            RuleFor(p => p.categoryName).MinimumLength(2).NotEmpty();
+            RuleFor(p => p.categoryName).MinimumLength(2).NotEmpty().WithMessage("Kategori Adı Boş Bırakılamaz");
             
 
         }

@@ -23,6 +23,7 @@ namespace NetCoreWebMvc.Controllers
         public CategoryController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
+
         }
 
         public ActionResult Index(string searching, int page = 1)
@@ -52,32 +53,20 @@ namespace NetCoreWebMvc.Controllers
         [HttpPost]
         public IActionResult Added(Category category)
         {
+            var result = _categoryService.Add(category);
 
 
-
-            if (ModelState.IsValid)
+            if (result.Success)
             {
-                var result = _categoryService.Add(category);
 
-                if (result != null)
-                {
-                    if (result.Success)
-                    {
-                        ViewBag.addedsucces = "Kategori Eklendi.";
-                        return View("Add");
-                    }
-                    else
-                    {
-                        ViewBag.notsuccess = "Kategori Eklenemedi.";
-                        return View("Add");
-                    }
-
-                }
+                ViewBag.addedsucces = "Kategori Eklendi.";
+                return View("Add");
             }
-
-            return RedirectToAction("Add");
-
-
+            else
+            {
+                ViewBag.notsuccess = "Kategori Eklenemedi.";
+                return View("Add");
+            }
 
         }
 
@@ -108,7 +97,7 @@ namespace NetCoreWebMvc.Controllers
         }
 
 
-        
+
         public PartialViewResult Notification(bool operation)
         {
 
@@ -117,7 +106,7 @@ namespace NetCoreWebMvc.Controllers
 
 
 
-        public IActionResult Add()
+        public IActionResult Add(Category category)
         {
             return View();
 
@@ -130,7 +119,7 @@ namespace NetCoreWebMvc.Controllers
         }
 
 
-       
+
 
 
 

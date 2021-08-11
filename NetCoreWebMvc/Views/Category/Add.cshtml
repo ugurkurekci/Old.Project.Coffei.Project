@@ -4,8 +4,25 @@
     ViewData["Title"] = "Kategori Ekleme Paneli";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<div class="modal modal-backdrop" id="idLoading">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="sr-only"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
 
 <h1>Kategori Ekle</h1>
+
 
 <form asp-action="Added" formmethod="post">
 
@@ -15,36 +32,79 @@
         <input asp-for="categoryName" type="text" id="inputText" class="form-control" required />
         <span asp-validation-for="categoryName" class="text-danger"></span>
 
+
+
+
     </div>
     <div class="form-group">
         <label for="horns">Kategori Durum</label>
         <input asp-for="isActive" type="checkbox" name="isActive" checked="checked" value="True" />
         <span asp-validation-for="isActive" class="text-danger"></span>
 
+
     </div>
-    <div class="form-group" >
-        <input type="submit" class="btn btn-primary" value="Gönder" >
+    <div class="form-group">
+        <input type="submit" id="btnSave" class="btn btn-primary" value="Gönder">
 
     </div>
 
 </form>
-@if (!string.IsNullOrEmpty(ViewBag.addedsucces))
-{
-    <p class="align-content-lg-between">@ViewBag.addedsucces</p>
-}
-@if (!string.IsNullOrEmpty(ViewBag.notsuccess))
-{
-    <p class="align-content-lg-between">@ViewBag.notsuccess</p>
-}
+<div id="addedsucces">
+
+    @if (!string.IsNullOrEmpty(ViewBag.addedsucces))
+    {
+
+        @ViewBag.addedsucces
+    }
+</div>
+<div id="notsuccess">
+
+    @if (!string.IsNullOrEmpty(ViewBag.notsuccess))
+    {
+        @ViewBag.notsuccess
+    }
+
+
+</div>
+
 
 
 <div class="form-group">
 
 
-    <a href="/Company/Index" class="btn btn-info">Listeye Geri Dön</a>
+    <a href="/Category/Index" class="btn btn-info">Listeye Geri Dön</a>
 
 
 </div>
 
+
+
+
+<script src="~/lib/jquery/jquery.js"></script>
+<script type="text/javascript">
+    $("#addedsucces").ready(function () {
+        toastr.success("Kategori Kaydedildi", "Başarılı"), 3000;
+    });
+</script>
+
+
+<script type="text/javascript">
+    $("#notsuccess").ready(function () {
+        toastr.error("Kategori Kaydedilmedi", "Başarısız"), 3000;
+    });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#idLoading').modal('show')
+        setTimeout(function () {
+            $('#idLoading').modal('hide')
+
+        }, 2000)
+    })
+
+</script>
 
 
