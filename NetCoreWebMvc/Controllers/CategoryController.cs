@@ -60,14 +60,9 @@ namespace NetCoreWebMvc.Controllers
                     ViewBag.addedsucces = "Kategori Eklendi";
                     return RedirectToAction("Index");
                 }
-                else
-                {
-                    foreach (var item in result.Errors)
-                    {
-                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                    }
-                }
+               
             }
+           
             return View();
         }
 

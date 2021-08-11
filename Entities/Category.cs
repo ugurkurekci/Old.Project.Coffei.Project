@@ -9,9 +9,11 @@ namespace Entities
     public class Category : IEntity
     {
         [Key]
+       
         public int id { get; set; }
         public string categoryName { get; set; }
         public Boolean isActive { get; set; }
 
     }
+
 }

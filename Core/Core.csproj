@@ -15,13 +15,4 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.12.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Business">
-      <HintPath>..\Business\bin\Debug\netcoreapp3.1\Business.dll</HintPath>
-    </Reference>
-    <Reference Include="Entities">
-      <HintPath>..\Business\bin\Debug\netcoreapp3.1\Entities.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

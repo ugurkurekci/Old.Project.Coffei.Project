@@ -27,15 +27,12 @@
 
 
 <form name="Add" method="post">
-    <div class="form-group" asp-validation-summary="All">
+
+    <div class="form-group">
         <label for="inputName">Kategori Adı</label>
 
-        <input asp-for="categoryName" type="text" id="inputText" class="form-control" />
-        <span asp-validation-for="categoryName" class="text-danger"></span>
-        
-
-
-
+        <input asp-for="categoryName" type="text" id="inputText" class="form-control" required />
+        <span asp-validation-for="categoryName" class="text-danger" data-minlength="2"></span>
 
 
 
@@ -55,15 +52,6 @@
 
 </form>
 
-
-<div id="errorsuccess">
-    @if (!string.IsNullOrEmpty(ViewBag.errorsucces))
-    {
-        @ViewBag.errorsucces
-
-    }
-</div>
-
 <div class="form-group">
 
     <a href="/Category/Index" class="btn btn-info">Listeye Geri Dön</a>
@@ -82,7 +70,7 @@
         setTimeout(function () {
             $('#idLoading').modal('hide')
 
-        }, 300)
+        }, 1000)
     });
 
 </script>
@@ -95,14 +83,14 @@
         });
     });
     function AddSubmit() {
-        if (document.getElementById("inputText").value == "") {
+        if (document.getElementById("inputText").value == "" ) {
 
-            toastr.error('Kategori Eklenmedi', "Başarısız ");
+            toastr.error("Kategori Eklenmedi", "Başarısız"), 2500;
         }
         else if (document.getElementById("checkbox").value == "") {
-            toastr.error('Kategori Eklenmedi', "Başarısız ");
+            toastr.error("Kategori Eklenmedi", "Başarısız"), 2500;
         }
-       
+
         else {
             toastr.success("Kategori Eklendi", "Başarılı"), 3000;
         }

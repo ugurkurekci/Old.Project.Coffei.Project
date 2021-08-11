@@ -47,8 +47,8 @@ namespace Business.Concrete
             {
 
 
-                string bizimMail = "farketmes321@gmail.com";
-                string sifre = "farketmez123";
+                string bizimMail = "*****s321@gmail.com";
+                string sifre = "******z123";
                 bool result = false;
 
                 Random rastgele = new Random();
@@ -81,8 +81,8 @@ namespace Business.Concrete
         public IResult Info(string contact)
         {
             {
-                string bizimMail = "farketmes321@gmail.com";
-                string sifre = "farketmez123";
+                string bizimMail = "*****s321@gmail.com";
+                string sifre = "******z123";
                 MailMessage mesaj = new MailMessage(bizimMail, contact, "Bizim iletişim kurduğunuz için teşekkürler.", "Yakın zaman içerisinde mesajınıza geri dönüş sağlanacaktır. '" + contact + "'\n\n Uğur Kürekci Ekibi");
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
                 smtp.EnableSsl = true;
@@ -98,6 +98,41 @@ namespace Business.Concrete
                 }
             }
             return new SuccessResult();
+        }
+        public static class SendMail
+        {
+            public static bool Send(string GMailHesabi, string GMailHesapSifresi, string GMailUnvan, string AMailHesabi, string MailKonu, string MailIcerik, string Pop3Host, int Pop3Port)
+            {
+                try
+                {
+                    ICredentials cred = new NetworkCredential(GMailHesabi, GMailHesapSifresi);
+                    // mail göndermek için oturum açtık
+
+                    using (MailMessage mail = new MailMessage())// yeni mail oluşturduk
+                    {
+                        mail.From = new MailAddress(GMailHesabi, GMailUnvan); // maili gönderecek hesabı belirttik
+                        mail.To.Add(AMailHesabi); // mail gönderilecek adres
+                        mail.Subject = MailKonu; // mailin konusu
+                        mail.Body = MailIcerik; // mailin içeriği
+                                                // göndereceğimiz maili hazırladık.
+
+                        using (SmtpClient smtp = new SmtpClient(Pop3Host, Pop3Port)) // smtp servere bağlandık
+                        {
+                            smtp.UseDefaultCredentials = false; // varsayılan girişi kullanmadık
+                            smtp.EnableSsl = true; // ssl kullanımına izin verdik
+                            smtp.Credentials = (NetworkCredential)cred; // server üzerindeki oturumumuzu yukarıda belirttiğimiz NetworkCredential üzerinden sağladık.
+                            smtp.Send(mail); // mailimizi gönderdik.
+                                             // smtp yani Simple Mail Transfer Protocol üzerinden maili gönderiyoruz.
+
+                        }
+                    }
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
         }
     }
 }

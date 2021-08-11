@@ -25,8 +25,10 @@ namespace NetCoreWebMvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore();
             services.AddControllersWithViews();
+
+
+            
 
             services.AddDependencyResolvers(new ICoreModule[] {
             new CoreModule()
@@ -52,9 +54,7 @@ namespace NetCoreWebMvc
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => //Core 3.1 ile beraber artık yönlendiremeler bu şekilde yapılıyor.
