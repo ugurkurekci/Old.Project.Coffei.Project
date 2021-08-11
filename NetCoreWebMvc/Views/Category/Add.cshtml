@@ -1,6 +1,7 @@
 ﻿@model Entities.Category
 
 @{
+
     ViewData["Title"] = "Kategori Ekleme Paneli";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -24,13 +25,16 @@
 <h1>Kategori Ekle</h1>
 
 
-<form asp-action="Added" formmethod="post">
 
+<form name="Add" method="post">
     <div class="form-group" asp-validation-summary="All">
         <label for="inputName">Kategori Adı</label>
 
-        <input asp-for="categoryName" type="text" id="inputText" class="form-control" required />
+        <input asp-for="categoryName" type="text" id="inputText" class="form-control" />
         <span asp-validation-for="categoryName" class="text-danger"></span>
+        
+
+
 
 
 
@@ -38,61 +42,37 @@
     </div>
     <div class="form-group">
         <label for="horns">Kategori Durum</label>
-        <input asp-for="isActive" type="checkbox" name="isActive" checked="checked" value="True" />
+        <input asp-for="isActive" type="checkbox" id="checkbox" name="isActive" checked="checked" value="True" />
         <span asp-validation-for="isActive" class="text-danger"></span>
 
 
     </div>
+
     <div class="form-group">
-        <input type="submit" id="btnSave" class="btn btn-primary" value="Gönder">
+        <input type="submit" class="btn btn-primary" value="Gönder" id="AddSubmit">
 
     </div>
 
 </form>
-<div id="addedsucces">
 
-    @if (!string.IsNullOrEmpty(ViewBag.addedsucces))
+
+<div id="errorsuccess">
+    @if (!string.IsNullOrEmpty(ViewBag.errorsucces))
     {
+        @ViewBag.errorsucces
 
-        @ViewBag.addedsucces
     }
 </div>
-<div id="notsuccess">
-
-    @if (!string.IsNullOrEmpty(ViewBag.notsuccess))
-    {
-        @ViewBag.notsuccess
-    }
-
-
-</div>
-
-
 
 <div class="form-group">
 
-
     <a href="/Category/Index" class="btn btn-info">Listeye Geri Dön</a>
-
 
 </div>
 
 
-
-
 <script src="~/lib/jquery/jquery.js"></script>
-<script type="text/javascript">
-    $("#addedsucces").ready(function () {
-        toastr.success("Kategori Kaydedildi", "Başarılı"), 3000;
-    });
-</script>
 
-
-<script type="text/javascript">
-    $("#notsuccess").ready(function () {
-        toastr.error("Kategori Kaydedilmedi", "Başarısız"), 3000;
-    });
-</script>
 
 
 
@@ -102,9 +82,30 @@
         setTimeout(function () {
             $('#idLoading').modal('hide')
 
-        }, 2000)
-    })
+        }, 300)
+    });
 
 </script>
 
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#AddSubmit").click(function () {
+            AddSubmit();
+        });
+    });
+    function AddSubmit() {
+        if (document.getElementById("inputText").value == "") {
+
+            toastr.error('Kategori Eklenmedi', "Başarısız ");
+        }
+        else if (document.getElementById("checkbox").value == "") {
+            toastr.error('Kategori Eklenmedi', "Başarısız ");
+        }
+       
+        else {
+            toastr.success("Kategori Eklendi", "Başarılı"), 3000;
+        }
+    }
+</script>
 

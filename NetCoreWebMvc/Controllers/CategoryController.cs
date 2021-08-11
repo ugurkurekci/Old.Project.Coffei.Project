@@ -1,17 +1,10 @@
 ﻿using Business.Abstract;
-using Business.Concrete;
 using Business.ValidationRules.FluentValidation;
-using DataAccess.Concrete.EntityFramework;
 using Entities;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using Core.Utilities.Results;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using X.PagedList;
-using X.PagedList.Mvc.Core.Fluent;
-using X.PagedList.Web.Common;
 
 
 namespace NetCoreWebMvc.Controllers
@@ -20,8 +13,11 @@ namespace NetCoreWebMvc.Controllers
     {
         ICategoryService _categoryService;
 
+
         public CategoryController(ICategoryService categoryService)
         {
+
+
             _categoryService = categoryService;
 
         }
@@ -30,9 +26,10 @@ namespace NetCoreWebMvc.Controllers
         {
             if (!string.IsNullOrEmpty(searching))
             {
-                var get = _categoryService.GetByCategoryName(searching).Data.ToPagedList(page, 10);
+                var searchget = _categoryService.GetByCategoryName(searching).Data.ToPagedList(page, 10);
                 ViewBag.searchmessage = "Aranan Kelime Listelendi";
-                return View(get);
+
+                return View(searchget);
             }
             else
             {
@@ -40,34 +37,38 @@ namespace NetCoreWebMvc.Controllers
 
             }
 
-            var result = _categoryService.GetAll().Data.ToPagedList(page, 10);
+            var get = _categoryService.GetAll().Data.ToPagedList(page, 10);
             ViewBag.message = "Success, listelendi";
 
 
-            return View(result);
+            return View(get);
 
         }
 
 
 
         [HttpPost]
-        public IActionResult Added(Category category)
+        public IActionResult Add(Category category)
         {
-            var result = _categoryService.Add(category);
-
-
-            if (result.Success)
+            CategoryValidator validationRules = new CategoryValidator();
+            ValidationResult result = validationRules.Validate(category);
+            if (result.IsValid)
             {
-
-                ViewBag.addedsucces = "Kategori Eklendi.";
-                return View("Add");
+                var added = _categoryService.Add(category);
+                if (added.Success)
+                {
+                    ViewBag.addedsucces = "Kategori Eklendi";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    }
+                }
             }
-            else
-            {
-                ViewBag.notsuccess = "Kategori Eklenemedi.";
-                return View("Add");
-            }
-
+            return View();
         }
 
         [HttpPost]
@@ -84,7 +85,7 @@ namespace NetCoreWebMvc.Controllers
                 id2.isActive = category.isActive;
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return View();
 
         }
 
@@ -105,14 +106,14 @@ namespace NetCoreWebMvc.Controllers
         }
 
 
-
-        public IActionResult Add(Category category)
+        [HttpGet]
+        public IActionResult Add()
         {
             return View();
 
 
         }
-
+        [HttpGet]
         public IActionResult Update(int id)
         {
             return View();

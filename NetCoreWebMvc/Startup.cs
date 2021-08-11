@@ -3,18 +3,13 @@ using Business.Concrete;
 using Core.DependencyResolver;
 using Core.Extensions;
 using Core.Utilities.IoC;
-using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Business.ValidationRules.FluentValidation;
+using FluentValidation.AspNetCore;
 
 namespace NetCoreWebMvc
 {
@@ -37,8 +32,7 @@ namespace NetCoreWebMvc
             new CoreModule()
             });
 
-            services.AddSingleton<IContactService, ContactManager>();
-            services.AddSingleton<ICategoryService, CategoryManager>();
+           
 
 
         }
