@@ -22,25 +22,10 @@ namespace NetCoreWebMvc.Controllers
 
         }
 
-        public ActionResult Index(string searching, int page = 1)
+        public ActionResult Index()
         {
-            if (!string.IsNullOrEmpty(searching))
-            {
-                var searchget = _categoryService.GetByCategoryName(searching).Data.ToPagedList(page, 10);
-                ViewBag.searchmessage = "Aranan Kelime Listelendi";
 
-                return View(searchget);
-            }
-            else
-            {
-                ViewBag.notsearchmessage = "Aranan Kelime Bulunamadı";
-
-            }
-
-            var get = _categoryService.GetAll().Data.ToPagedList(page, 10);
-            ViewBag.message = "Success, listelendi";
-
-
+            var get = _categoryService.GetAll().Data;
             return View(get);
 
         }
@@ -58,24 +43,24 @@ namespace NetCoreWebMvc.Controllers
                 var dataa = new Category
                 {
                     categoryName = category.categoryName,
-                    isActive=category.isActive
-                    
+                    isActive = category.isActive
+
 
                 };
-                var categoryresult =_categoryService.Add(dataa);
+                var categoryresult = _categoryService.Add(dataa);
                 if (categoryresult.Success)
                 {
-                    
+
                     return RedirectToAction("Index", "Category");
                 }
                 else
                 {
                     return RedirectToAction("Add", "Category");
                 }
-               
+
 
             }
-            return View(result);
+            return View(category);
         }
 
         [HttpPost]
@@ -106,14 +91,14 @@ namespace NetCoreWebMvc.Controllers
 
 
 
-           
+
         public IActionResult Add()
         {
             return View();
 
 
         }
-       
+
         public IActionResult Updated(int id)
         {
             return View();
