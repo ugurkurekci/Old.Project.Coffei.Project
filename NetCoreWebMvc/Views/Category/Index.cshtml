@@ -1,8 +1,5 @@
 ﻿@using Entities
 
-
-
-
 @model List<Category>
 
 @{
@@ -11,8 +8,34 @@
 }
 
 
+@using (Html.BeginForm("Add", "Category", FormMethod.Post))
+{
+    <div class="alert alert-default-light,text text-right" role="alert">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal1">Kategori Ekle</button>
+        <div class="modal" id="Modal1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Kategori Ekle</h2>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <label>Kategori Adı</label>
+                            <input type="text" name="categoryName" class="form-control" />
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Kategori Durum</label>
+                            <input type="checkbox" class="checbox" name="isActive" value="True" checked="checked" /><br />
+                            <button class="btn btn-success">Kategori Ekle</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+
+}
 <table id="example" class="display" style="width:100%">
     <thead>
         <tr>
@@ -28,31 +51,17 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>@item.id</td>
-            <td>@item.categoryName</td>
-            <td>@item.isActive</td>
-            <td><a href="/Category/Updated/@item.id" class="btn btn-warning">Güncelle</a></td>
-            <td><a href="/Category/Deleted/@item.id" class="btn btn-danger">Sil</a></td>
-        </tr>
+            <tr>
+                <td>@item.id</td>
+                <td>@item.categoryName</td>
+                <td>@item.isActive</td>
+                <td><a href="/Category/Updated/@item.id" class="btn btn-warning">Güncelle</a></td>
+                <td><a href="/Category/Deleted/@item.id" class="btn btn-danger">Sil</a></td>
+            </tr>
         }
     </tbody>
     <tfoot>
-       
+
     </tfoot>
 
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

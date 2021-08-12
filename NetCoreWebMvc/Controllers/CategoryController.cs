@@ -3,8 +3,8 @@ using Business.ValidationRules.FluentValidation;
 using Entities;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using X.PagedList;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 
 namespace NetCoreWebMvc.Controllers
@@ -104,16 +104,16 @@ namespace NetCoreWebMvc.Controllers
             return View();
         }
 
-        public ActionResult getSum(string number1, string number2)
-        {
-            int number_1 = int.TryParse(number1, out int defaultValue1) ? defaultValue1 : 0;
-            int number_2 = int.TryParse(number2, out int defaultValue2) ? defaultValue2 : 0;
-
-            int result = number_1 + number_2;
-            return Json(result);
-        }
-
-
 
     }
 }
+
+
+
+
+
+
+
+
+
+
