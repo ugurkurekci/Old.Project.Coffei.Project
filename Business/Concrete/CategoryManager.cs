@@ -29,8 +29,8 @@ namespace Business.Concrete
 
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
-        [CacheRemoveAspect("ICategoryService.Get")]
-        [ValidationAspect(typeof(CategoryValidator))]
+       // [CacheRemoveAspect("ICategoryService.Get")]
+        //[ValidationAspect(typeof(CategoryValidator))]
 
         // [SecuredOperation("Admin")]
 

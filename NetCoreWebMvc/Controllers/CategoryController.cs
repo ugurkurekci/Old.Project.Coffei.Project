@@ -54,16 +54,28 @@ namespace NetCoreWebMvc.Controllers
             ValidationResult result = validationRules.Validate(category);
             if (result.IsValid)
             {
-                var added = _categoryService.Add(category);
-                if (added.Success)
+
+                var dataa = new Category
                 {
-                    ViewBag.addedsucces = "Kategori Eklendi";
-                    return RedirectToAction("Index");
+                    categoryName = category.categoryName,
+                    isActive=category.isActive
+                    
+
+                };
+                var categoryresult =_categoryService.Add(dataa);
+                if (categoryresult.Success)
+                {
+                    
+                    return RedirectToAction("Index", "Category");
+                }
+                else
+                {
+                    return RedirectToAction("Add", "Category");
                 }
                
+
             }
-           
-            return View();
+            return View(result);
         }
 
         [HttpPost]
@@ -94,30 +106,27 @@ namespace NetCoreWebMvc.Controllers
 
 
 
-        public PartialViewResult Notification(bool operation)
-        {
-
-            return PartialView(_categoryService.GetByIsActive(operation).Data);
-        }
-
-
-        [HttpGet]
+           
         public IActionResult Add()
         {
             return View();
 
 
         }
-        [HttpGet]
-        public IActionResult Update(int id)
+       
+        public IActionResult Updated(int id)
         {
             return View();
         }
 
+        public ActionResult getSum(string number1, string number2)
+        {
+            int number_1 = int.TryParse(number1, out int defaultValue1) ? defaultValue1 : 0;
+            int number_2 = int.TryParse(number2, out int defaultValue2) ? defaultValue2 : 0;
 
-
-
-
+            int result = number_1 + number_2;
+            return Json(result);
+        }
 
 
 

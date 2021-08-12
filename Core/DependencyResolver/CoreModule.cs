@@ -19,11 +19,13 @@ namespace Core.DependencyResolver
         public void Load(IServiceCollection serviceCollection)
         {
             serviceCollection.AddMemoryCache();
+            serviceCollection.AddLogging();
+            serviceCollection.AddOptions();            
             serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             serviceCollection.AddSingleton<ICacheManager, MemoryCacheManager>();
             serviceCollection.AddSingleton<Stopwatch>();
             serviceCollection.AddSingleton<ICredentials, NetworkCredential>();
-            
+
 
 
 
