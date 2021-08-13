@@ -1,0 +1,32 @@
+﻿@model Entities.Company
+@{
+    ViewData["Title"] = "Updated";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="alert alert-warning">Firma Güncelle</h1>
+<br />
+<br />
+
+@using (Html.BeginForm("Updated", "Company", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("Firma ID")
+        <input asp-for="id" type="number" class="form-control" readonly />
+        <br />
+
+        @Html.Label("Firma Adı")
+        @Html.TextBoxFor(c => c.companyName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(t => t.companyName, String.Empty, new { @style = "color:red;!important" })
+        <br />
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Gönder">
+        </div>
+    </div>
+
+}
+<div class="form-group">
+    <a href="/Company/Index" class="btn btn-info">Listeye Geri Dön</a>
+</div>
+

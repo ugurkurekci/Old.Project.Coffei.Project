@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using X.PagedList;
 
 namespace NetCoreWebMvc.Controllers
 {
@@ -18,32 +17,17 @@ namespace NetCoreWebMvc.Controllers
             _companyService = companyService;
         }
 
-        public IActionResult Index(string searching, int page = 1)
+        public IActionResult Index()
         {
-            if (!string.IsNullOrEmpty(searching))
-            {
-                var get = _companyService.GetByCompanyName(searching).Data.ToPagedList(page, 10);
-                ViewBag.searchmessage = "Aranan Kelime Listelendi";
-                return View(get);
-            }
-            else
-            {
-                ViewBag.notsearchmessage = "Aranan Kelime Bulunamadı";
 
-            }
-
-            var result = _companyService.GetAll().Data.ToPagedList(page, 10);
-            ViewBag.message = "Success, listelendi";
-
-
-            return View(result);
+            var get = _companyService.GetAll().Data;
+            return View(get);
         }
 
 
         [HttpPost]
-        public IActionResult Added(Company company)
+        public IActionResult Add(Company company)
         {
-
 
 
             if (ModelState.IsValid)
@@ -54,21 +38,18 @@ namespace NetCoreWebMvc.Controllers
                 {
                     if (result.Success)
                     {
-                        ViewBag.addedsucces = "Firma Eklendi.";
-                        return View("Add");
+                        return RedirectToAction("Index", "Company");
                     }
                     else
                     {
-                        ViewBag.notsuccess = "Firma Eklenemedi.";
-                        return View("Add");
+                        
+                        return View("Add", "Company");
                     }
 
                 }
             }
 
-            return RedirectToAction("Add");
-
-
+            return View(company);
 
         }
 
@@ -85,7 +66,7 @@ namespace NetCoreWebMvc.Controllers
                 id2.companyName = company.companyName.Trim();
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return View();
 
         }
 
@@ -108,7 +89,7 @@ namespace NetCoreWebMvc.Controllers
 
         }
 
-        public IActionResult Update(int id)
+        public IActionResult Updated(int id)
         {
             return View();
         }
