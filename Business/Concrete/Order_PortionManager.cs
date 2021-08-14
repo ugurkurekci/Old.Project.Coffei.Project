@@ -53,6 +53,16 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Order_Portion>>(_order_PortionDal.GetAll(), "Porsiyonlar Listelendi.");
         }
+
+        [LogAspect(typeof(DatabaseLogger))]
+        [LogAspect(typeof(FileLogger))]
+        [PerformanceAspect(5)]
+        [CacheAspect(duration: 10)]
+        public IDataResult<Order_Portion> GetByid(int id)
+        {
+            return new SuccessDataResult<Order_Portion>(_order_PortionDal.Get(p => p.id == id), "Porsiyon ID Listelendi.");
+        }
+
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
         [CacheRemoveAspect("IOrder_PortionService.Get")]

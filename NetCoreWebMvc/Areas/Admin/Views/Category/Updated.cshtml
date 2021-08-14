@@ -5,9 +5,23 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1 class="alert alert-warning">Kategori Güncelle</h1>
-<br />
-<br />
+<div class="d-flex justify-content-end">
+    <div class="form-group">
+        <a href="@Url.Action("Index","Category")" class="btn btn-info">Listeye Geri Dön</a>
+    </div>
+</div>
+
+
+
+<div class="alert alert-warning">
+    <h3 class="alert alert-danger">BİLGİLENDİRME METNİ</h3><br />
+    <p>Kategori güncelleme işlemlerinizi buradan yapabilirsiniz.</p><br />
+
+    <div class="alert alert-danger">
+        <h5 style="color:red">Not: </h5> <p>Aynı isimde kategori ismi kabul etmeyecektir. Birbirinden bağımsız isimli kategori ismi giriniz.</p>
+    </div>
+
+</div><br />
 
 
 
@@ -15,7 +29,8 @@
 {
     <div class="form-group">
         @Html.Label("Kategori ID")
-        <input asp-for="id" type="number" class="form-control" readonly />
+        @Html.TextBoxFor(c => c.id, new { @class = "form-control", @type = "number", @readonly = "readonly" })
+
         <br />
 
         @Html.Label("Kategori Adı")
@@ -34,7 +49,6 @@
     </div>
 
 }
-<div class="form-group">
-    <a href="/Category/Index" class="btn btn-info">Listeye Geri Dön</a>
-</div>
+
+
 

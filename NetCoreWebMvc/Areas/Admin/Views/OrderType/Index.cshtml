@@ -1,0 +1,86 @@
+﻿@using Entities
+
+@model List<Order_Type>
+
+@{
+    ViewData["Title"] = "Satış-Tür Listeleme Paneli";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div>
+    <div class="alert alert-danger">
+        <h3 style="color:red">BİLGİLENDİRME METNİ</h3><br />
+        <p style="color:black;font-size:25px">Sipariş Tür liste işlemlerinizi buradan yapabilirsiniz. </p><br />
+        <h4 class="alert alert-warning">Silme işlemleriniz için Sil butonuna basmanız yeterlidir. Güncelleme işlemleri butona bastıktan hemen sonra,  yönlendirme biçiminde gerçekleşecektir.</h4>
+    </div>
+
+    <div class="alert alert-primary">
+        <h5 style="color:red">Not: </h5> <p>Ekleme İşlemlerinizi aşağıdaki butondan yapabilirsiniz.</p><br />
+
+        @using (Html.BeginForm("Add", "OrderType", FormMethod.Post))
+        {
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal1">Sipariş Tür Ekle</button>
+            <div class="modal" id="Modal1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header"><h2 class="modal-title">Sipariş Tür EKLE</h2></div>
+                        <form>
+                            <div class="modal-body">
+                                <label>Sipariş Tür Adı</label>
+                                <input type="text" name="categoryName" class="form-control" /><br />
+
+                                <button class="btn btn-success">Sipariş Tür Ekle</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        }
+        <br />
+
+    </div>
+</div>
+<br />
+
+
+
+
+
+
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+
+            <th>#</th>
+            <th>Sipariş-Tür Adı</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.orderTypeName</td>
+
+
+                <td>
+                    <a href="@Url.Action("Deleted","OrderType")/@item.id" class="btn btn-danger btn-icon-split"><span class="icon text-white-50"><i class="fas fa-trash"></i></span><span class="text">Sil</span></a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Updated","OrderType")/@item.id" class="btn btn-info btn-icon-split"><span class="icon text-white-50"><i class="fas fa-info-circle"></i></span><span class="text">Güncelle</span></a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+
+    </tfoot>
+
+</table>

@@ -1,0 +1,44 @@
+﻿@model Entities.Company
+@{
+    ViewData["Title"] = "Firma Güncelleme Paneli";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-end">
+    <div class="form-group">
+        <a href="@Url.Action("Index","Company")" class="btn btn-info">Listeye Geri Dön</a>
+    </div>
+</div>
+
+
+
+<div class="alert alert-warning">
+    <h3 class="alert alert-danger">BİLGİLENDİRME METNİ</h3><br />
+    <p>Firma güncelleme işlemlerinizi buradan yapabilirsiniz.</p><br />
+
+    <div class="alert alert-danger">
+        <h5 style="color:red">Not: </h5> <p>Aynı isimde firma ismi kabul etmeyecektir. Birbirinden bağımsız isimli firma ismi giriniz.</p>
+    </div>
+
+</div>
+<br />
+
+@using (Html.BeginForm("Updated", "Company", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("Firma ID")
+        @Html.TextBoxFor(c => c.id, new { @class = "form-control", @type = "number", @readonly = "readonly" })
+        <br />
+
+        @Html.Label("Firma Adı")
+        @Html.TextBoxFor(c => c.companyName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(t => t.companyName, String.Empty, new { @style = "color:red;!important" })
+        <br />
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Gönder">
+        </div>
+    </div>
+
+}
+

@@ -12,5 +12,7 @@ namespace Business.Abstract
         IResult Add(Order_Type order_Type);
         IResult Delete(Order_Type order_Type);
         IResult Update(Order_Type order_Type);
+        IDataResult<Order_Type> GetByid(int id);
+
     }
 }

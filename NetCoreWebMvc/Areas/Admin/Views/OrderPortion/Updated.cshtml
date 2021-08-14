@@ -1,0 +1,48 @@
+﻿@model Entities.Order_Portion
+
+@{
+    ViewData["Title"] = "Satış-Porsiyon Güncelleme Paneli";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-end">
+    <div class="form-group">
+        <a href="@Url.Action("Index","OrderPortion")" class="btn btn-info">Listeye Geri Dön</a>
+    </div>
+</div>
+
+
+
+<div class="alert alert-warning">
+    <h3 class="alert alert-danger">BİLGİLENDİRME METNİ</h3><br />
+    <p>Spariş-Porsiyon güncelleme işlemlerinizi buradan yapabilirsiniz.</p><br />
+
+    <div class="alert alert-danger">
+        <h5 style="color:red">Not: </h5> <p>Aynı isimde porsiyon ismi kabul etmeyecektir. Birbirinden bağımsız isimli porsiyon ismi giriniz.</p>
+    </div>
+
+</div>
+<br />
+
+
+@using (Html.BeginForm("Updated", "OrderPortion", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("Porsiyon ID")
+        @Html.TextBoxFor(c => c.id, new { @class = "form-control", @type = "number", @readonly = "readonly" })
+        <br />
+
+        @Html.Label("Porsiyon Adı")
+        @Html.TextBoxFor(c => c.orderPortionName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(t => t.orderPortionName, String.Empty, new { @style = "color:red;!important" })
+        <br />
+
+
+
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Gönder">
+        </div>
+    </div>
+
+}

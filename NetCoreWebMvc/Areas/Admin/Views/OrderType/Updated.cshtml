@@ -1,0 +1,49 @@
+﻿@model Entities.Order_Type
+
+@{
+    ViewData["Title"] = "Satış-Tür Güncelleme Paneli";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-end">
+    <div class="form-group">
+        <a href="@Url.Action("Index","OrderType")" class="btn btn-info">Listeye Geri Dön</a>
+    </div>
+</div>
+
+
+
+<div class="alert alert-warning">
+    <h3 class="alert alert-danger">BİLGİLENDİRME METNİ</h3><br />
+    <p>Spariş-Tür güncelleme işlemlerinizi buradan yapabilirsiniz.</p><br />
+
+    <div class="alert alert-danger">
+        <h5 style="color:red">Not: </h5> <p>Aynı isimde tür ismi kabul etmeyecektir. Birbirinden bağımsız isimli tür ismi giriniz.</p>
+    </div>
+
+</div>
+<br />
+
+
+@using (Html.BeginForm("Updated", "OrderType", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.Label("Sipariş Tür ID")
+    @Html.TextBoxFor(c => c.id, new { @class = "form-control", @type = "number", @readonly = "readonly" })
+    <br />
+
+    @Html.Label("Sipariş Tür Adı")
+    @Html.TextBoxFor(c => c.orderTypeName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(t => t.orderTypeName, String.Empty, new { @style = "color:red;!important" })
+    <br />
+
+
+
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Gönder">
+    </div>
+</div>
+
+}
+

@@ -8,6 +8,7 @@ namespace Entities
     public class Payment_Name : IEntity
     {
         public int id { get; set; }
+
         public string paymentName { get; set; }
     }
 }

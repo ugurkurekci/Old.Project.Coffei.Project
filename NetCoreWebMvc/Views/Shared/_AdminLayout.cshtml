@@ -44,7 +44,7 @@
             </li>
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="../Admin/Index">
+                <a class="nav-link" href="@Url.Action("Index","Admin")">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Gösterge Paneli</span>
                 </a>
@@ -69,11 +69,12 @@
                 </a>
                 <div id="collapseCategory" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/Category/Index"><i class="fas fa-list"></i> Liste</a>
-                        <a class="collapse-item" href="/Category/Add"><i class="fas fa-plus"></i> Ekle</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Category")"><i class="fas fa-list"></i> Liste</a>
+                        <a class="collapse-item" href="@Url.Action("Add","Category")"><i class="fas fa-plus"></i> Ekle</a>
                     </div>
                 </div>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompany"
                    aria-expanded="true" aria-controls="collapseCompany">
@@ -82,43 +83,48 @@
                 </a>
                 <div id="collapseCompany" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/Company/Index"><i class="fas fa-list"></i> Liste</a>
-                        <a class="collapse-item" href="/Company/Add"><i class="fas fa-plus"></i> Ekle</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Company")"><i class="fas fa-list"></i> Liste</a>
+                        <a class="collapse-item" href="@Url.Action("Add","Company")"><i class="fas fa-plus"></i> Ekle</a>
                     </div>
                 </div>
             </li>
-
-
-
 
             <li>
                 <hr class="sidebar-divider">
 
                 <div class="sidebar-heading">
-                    Satış
+                    Sipariş
                 </div>
-
 
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrder"
-                   aria-expanded="true" aria-controls="collapseOrder">
-                    <i class="fas fa-building"></i>
-                    <span>Satış</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrderPortion"
+                   aria-expanded="true" aria-controls="collapseOrderPortion">
+                    <i class="fa fa-adjust"></i>
+                    <span>Sipariş Porsiyon</span>
                 </a>
-                <div id="collapseOrder" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseOrderPortion" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#"><i class="fas fa-list"></i> Liste</a>
-                        <a class="collapse-item" href="#"><i class="fas fa-plus"></i> Ekle</a>
+                        <a class="collapse-item" href="@Url.Action("Index","OrderPortion")"><i class="fas fa-list"></i> Liste</a>
+                        <a class="collapse-item" href="@Url.Action("Add","OrderPortion")"><i class="fas fa-plus"></i> Ekle</a>
                     </div>
                 </div>
             </li>
 
-
-
-
-
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrderType"
+                   aria-expanded="true" aria-controls="collapseOrderType">
+                    <i class="fa fa-archive"></i>
+                    <span>Sipariş Tür</span>
+                </a>
+                <div id="collapseOrderType" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index","OrderType")"><i class="fas fa-list"></i> Liste</a>
+                        <a class="collapse-item" href="@Url.Action("Add","OrderType")"><i class="fas fa-plus"></i> Ekle</a>
+                    </div>
+                </div>
+            </li>
 
 
             <li>

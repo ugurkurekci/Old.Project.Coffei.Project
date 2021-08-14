@@ -4,6 +4,8 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
+<div class="alert alert-heading">asasd</div>
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-sm-6">
@@ -15,6 +17,8 @@
                 <h3>Kategori</h3>
             </div>
         </div>
+
+
         <div class="col-md-3 col-sm-6">
             <div class="counter blue">
                 <div class="counter-icon">
@@ -24,15 +28,27 @@
                 <h3>Firma</h3>
             </div>
         </div>
+
         <div class="col-md-3 col-sm-6">
             <div class="counter red">
                 <div class="counter-icon">
-                    <i class="fa fa-asterisk"></i>
+                    <i class="fa fa-archive"></i>
                 </div>
-                <span class="counter-value">1005</span>
-                <h3>Web AAA</h3>
+                <span class="counter-value">@ViewBag.r3</span>
+                <h3>Sipariş Tür</h3>
             </div>
         </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="counter red">
+                <div class="counter-icon">
+                    <i class="fa fa-adjust"></i>
+                </div>
+                <span class="counter-value">@ViewBag.r4</span>
+                <h3>Sipariş Porsiyon</h3>
+            </div>
+        </div>
+
     </div>
 </div>
 

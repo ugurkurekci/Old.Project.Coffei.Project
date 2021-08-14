@@ -10,6 +10,8 @@ namespace Entities
     {
         [Key]
         public int id { get; set; }
+        [Required(ErrorMessage = "Satış-Porsiyon Adı Giriniz")]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Minimum 2 karakter giriniz.")]
         public string orderPortionName { get; set; }
     }
 }

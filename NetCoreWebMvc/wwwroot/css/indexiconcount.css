@@ -87,10 +87,12 @@
         border-color: #ff0000;
     }
 
-    .counter.red:after {
-        border-bottom-color: #ff0000;
-        border-left-color: #ff0000;
-    }
+        .counter.red:after {
+            border-bottom-color: #ff0000;
+            border-left-color: #ff0000;
+        }
+
+   
 
 @media screen and (max-width:990px) {
     .counter {

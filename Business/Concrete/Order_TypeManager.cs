@@ -53,6 +53,12 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Order_Type>>(_order_TypeDal.GetAll(), "Tip Listelendi.");
         }
+
+        public IDataResult<Order_Type> GetByid(int id)
+        {
+            return new SuccessDataResult<Order_Type>(_order_TypeDal.Get(p => p.id == id), "Tip ID Listelendi.");
+        }
+
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
         [CacheRemoveAspect("IOrder_TypeService.Get")]

@@ -1,0 +1,60 @@
+﻿@model Entities.Category
+
+@{
+
+    ViewData["Title"] = "Kategori Ekleme Paneli";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-end">
+    <div class="form-group">
+        <a href="@Url.Action("Index","Category")" class="btn btn-info">Listeye Geri Dön</a>
+    </div>
+</div>
+
+
+
+<div class="alert alert-warning">
+    <h3 class="alert alert-danger">BİLGİLENDİRME METNİ</h3><br />
+    <p>Kategori ekleme işlemlerinizi buradan yapabilirsiniz.</p><br />
+
+    <div class="alert alert-danger">
+        <h5 style="color:red">Not: </h5> <p>Aynı isimde kategori ismi kabul etmeyecektir. Birbirinden bağımsız isimli kategori ismi giriniz.</p>
+    </div>
+
+</div>
+
+
+
+
+@using (Html.BeginForm("Add", "Category", FormMethod.Post))
+{
+
+        <div class="form-group" style="font-size:25px">
+            @Html.Label("Kategori Adı")
+            @Html.TextBoxFor(c => c.categoryName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(t => t.categoryName, String.Empty, new { @style = "color:red;!important" })
+            <br />
+
+            @Html.CheckBoxFor(c => c.isActive)
+            <label class="form-check-label" for="flexSwitchCheckChecked">@Html.Label("Kategori Durum ")</label>
+            @Html.ValidationMessageFor(c => c.isActive)
+            <br />
+
+
+            <div class="d-flex justify-content-center" style="font-size:25px">
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Gönder">
+                </div>
+            </div>
+        </div>
+        }
+
+
+
+
+
+
+
+
