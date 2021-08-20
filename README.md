@@ -1,7 +1,5 @@
 # CoffeiSoft
 
-
-The project will continue
 Proje devam edecektir.
 Belli sebeplerden ötürü şuan gelişim durduruldu.
 22 Ağustos tekrar gelişime açılacaktır.
