@@ -20,10 +20,10 @@ namespace Api.Controllers
             _customerService = customerService;
         }
 
-        [HttpGet("getall")]
-        public IActionResult GetAll()
+        [HttpGet("getAll")]
+        public IActionResult getAll()
         {
-            var result = _customerService.GetAll();
+            var result = _customerService.getAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -31,22 +31,10 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getallDetails")]
-        public IActionResult getallDetails()
+        [HttpGet("getAllDetails")]
+        public IActionResult getAllDetails()
         {
-            var result = _customerService.GetCustomerDetailsDto();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-
-        [HttpGet("GetByPhone")]
-        public IActionResult GetByPhone(int phoneNumber)
-        {
-            var result = _customerService.GetByPhone(phoneNumber);
+            var result = _customerService.getCustomerDetailsDto();
             if (result.Success)
             {
                 return Ok(result);
@@ -55,10 +43,22 @@ namespace Api.Controllers
         }
 
 
-        [HttpGet("GetByNameAndSurname")]
-        public IActionResult GetByNameAndSurname(string name, string surname)
+        [HttpGet("getByPhone")]
+        public IActionResult getByPhone(int phoneNumber)
         {
-            var result = _customerService.GetByNameAndSurname(name, surname);
+            var result = _customerService.getByPhone(phoneNumber);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+
+        [HttpGet("getByNameAndSurname")]
+        public IActionResult getByNameAndSurname(string name, string surname)
+        {
+            var result = _customerService.getByNameAndSurname(name, surname);
             if (result.Success)
             {
                 return Ok(result);

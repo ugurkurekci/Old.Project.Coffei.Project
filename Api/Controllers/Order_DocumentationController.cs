@@ -21,10 +21,10 @@ namespace Api.Controllers
             _order_DocumentationService = order_DocumentationService;
         }
 
-        [HttpGet("Getall")]
-        public IActionResult GetAll()
+        [HttpGet("getAll")]
+        public IActionResult getAll()
         {
-            var result = _order_DocumentationService.GetAll();
+            var result = _order_DocumentationService.getAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -32,10 +32,10 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getallDetails")]
-        public IActionResult getallDetails()
+        [HttpGet("getAllDetails")]
+        public IActionResult getAllDetails()
         {
-            var result = _order_DocumentationService.GetAllDetails();
+            var result = _order_DocumentationService.getAllDetails();
             if (result.Success)
             {
                 return Ok(result);

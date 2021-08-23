@@ -10,7 +10,7 @@ namespace DataAccess.Abstract
 {
     public interface ITableDal : IEntityRepository<Table>
     {
-        List<TableDetailsDto> GetTableDetails(Expression<Func<Table, bool>> filter = null);
+        List<TableDetailsDto> getTableDetails(Expression<Func<Table, bool>> filter = null);
 
     }
 }

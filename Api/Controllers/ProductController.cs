@@ -20,41 +20,30 @@ namespace Api.Controllers
             _productService = productService;
         }
 
-        [HttpGet("getall")]
-        public IActionResult GetAll()
+        [HttpGet("getAll")]
+        public IActionResult getAll()
         {
-            var result = _productService.GetAll();
+            var result = _productService.getAll();
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("GetDetails")]
-        public IActionResult GetDetails()
+        [HttpGet("getDetails")]
+        public IActionResult getDetails()
         {
-            var result = _productService.GetProductDetails();
+            var result = _productService.getProductDetails();
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("GetByProductName")]
-        public IActionResult GetByProductName(string productName)
+        [HttpGet("getByProductName")]
+        public IActionResult getByProductName(string productName)
         {
-            var result = _productService.GetByProductName(productName);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("GetById")]
-        public IActionResult GetById(int id )
-        {
-            var result = _productService.GetById(id);
+            var result = _productService.getByProductName(productName);
             if (result.Success)
             {
                 return Ok(result);
@@ -62,10 +51,10 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("GetByProductPrice")]
-        public IActionResult GetByProductPrice(double price)
+        [HttpGet("getById")]
+        public IActionResult getById(int id )
         {
-            var result = _productService.GetByProductPrice(price);
+            var result = _productService.getById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -73,20 +62,31 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("GetByProductStock")]
-        public IActionResult GetByProductStock(int stock)
+        [HttpGet("getByProductPrice")]
+        public IActionResult getByProductPrice(double price)
         {
-            var result = _productService.GetByProductStock(stock);
+            var result = _productService.getByProductPrice(price);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("GetByCategoryId")]
-        public IActionResult GetByCategoryId(int categoryid)
+
+        [HttpGet("getByProductStock")]
+        public IActionResult getByProductStock(int stock)
         {
-            var result = _productService.GetByCategoryId(categoryid);
+            var result = _productService.getByProductStock(stock);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getByCategoryId")]
+        public IActionResult getByCategoryId(int categoryid)
+        {
+            var result = _productService.getByCategoryId(categoryid);
             if (result.Success)
             {
                 return Ok(result);

@@ -10,22 +10,22 @@ namespace Business.Abstract
 {
     public interface IProductService
     {
-        IDataResult<List<Product>> GetAll();
+        IDataResult<List<Product>> getAll();
         IResult Add(Product product);
         IResult Delete(Product product);
         IResult Update(Product product);
-        IDataResult<Product> GetById(int id);
-        IDataResult<Product> GetByCategoryId(int category_id);
+        IDataResult<Product> getById(int id);
+        IDataResult<Product> getByCategoryId(int category_id);
 
-        IDataResult<Product> GetByProductName(string productName);
-        IDataResult<Product> GetByProductStock(int productStock);
-        IDataResult<Product> GetByProductPrice(double productPrice);
-
-
-        IDataResult<List<ProductDetailsDto>> GetProductDetails(Expression<Func<Product, bool>> filter = null);
+        IDataResult<Product> getByProductName(string productName);
+        IDataResult<Product> getByProductStock(int productStock);
+        IDataResult<Product> getByProductPrice(double productPrice);
 
 
-        IResult AddTransactionalTest(Product product);
+        IDataResult<List<ProductDetailsDto>> getProductDetails(Expression<Func<Product, bool>> filter = null);
+
+
+        IResult addTransactionalTest(Product product);
 
 
 

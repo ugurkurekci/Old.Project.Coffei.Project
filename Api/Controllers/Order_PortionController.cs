@@ -20,10 +20,10 @@ namespace Api.Controllers
             _order_PortionService = order_PortionService;
         }
 
-        [HttpGet("getall")]
-        public IActionResult GetAll()
+        [HttpGet("getAll")]
+        public IActionResult getAll()
         {
-            var result = _order_PortionService.GetAll();
+            var result = _order_PortionService.getAll();
             if (result.Success)
             {
                 return Ok(result);

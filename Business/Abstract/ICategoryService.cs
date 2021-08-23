@@ -8,10 +8,10 @@ namespace Business.Abstract
 {
     public interface ICategoryService
     {
-        IDataResult<List<Category>> GetAll();
-        IDataResult<Category> GetByid(int id);
-        IDataResult<List<Category>> GetByCategoryName(string categoryName);
-        IDataResult<List<Category>> GetByIsActive(bool operation);
+        IDataResult<List<Category>> getAll();
+        IDataResult<Category> getById(int id);
+        IDataResult<List<Category>> getByCategoryName(string categoryName);
+        IDataResult<List<Category>> getByIsActive(bool operation);
         IResult Add(Category category);
         IResult Delete(Category category);
         IResult Update(Category category);

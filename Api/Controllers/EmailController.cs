@@ -20,10 +20,10 @@ namespace Api.Controllers
             _emailService = emailService;
         }
 
-        [HttpGet("getall")]
-        public IActionResult GetAll()
+        [HttpGet("getAll")]
+        public IActionResult getAll()
         {
-            var result = _emailService.GetAll();
+            var result = _emailService.getAll();
             if (result.Success)
             {
                 return Ok(result);

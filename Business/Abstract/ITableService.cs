@@ -9,16 +9,16 @@ namespace Business.Abstract
 {
     public interface ITableService
     {
-        IDataResult<List<Table>> GetAll();
-        IDataResult<List<TableDetailsDto>> GetAllDetails();
+        IDataResult<List<Table>> getAll();
+        IDataResult<List<TableDetailsDto>> getAllDetails();
         IResult Add(Table table);
         IResult Delete(Table table);
         IResult Update(Table table);
-        IDataResult<Table> GetById(int id);
-        IDataResult<Table> GetByTableNameId(int tableName);
-        IDataResult<Table> GetByTableLocationId(int tableLocation);
-        IDataResult<Table> GetByTableCapacity(int tableCapacity);
-        IDataResult<Table> GetByIsActive(bool IsActive);
+        IDataResult<Table> getById(int id);
+        IDataResult<Table> getByTableNameId(int tableName);
+        IDataResult<Table> getByTableLocationId(int tableLocation);
+        IDataResult<Table> getByTableCapacity(int tableCapacity);
+        IDataResult<Table> getByIsActive(bool IsActive);
 
     }
 }

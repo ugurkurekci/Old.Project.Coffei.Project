@@ -29,7 +29,7 @@ namespace Business.Concrete
 
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
-       // [CacheRemoveAspect("ICategoryService.Get")]
+        // [CacheRemoveAspect("ICategoryService.Get")]
         //[ValidationAspect(typeof(CategoryValidator))]
 
         // [SecuredOperation("Admin")]
@@ -65,26 +65,26 @@ namespace Business.Concrete
         // [CacheAspect(duration: 10)]
 
 
-        public IDataResult<List<Category>> GetAll()
+        public IDataResult<List<Category>> getAll()
         {
             Thread.Sleep(3000);
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), "Kategori Listelendi.");
         }
 
-      
-        public IDataResult<List<Category>> GetByCategoryName(string categoryName)
+
+        public IDataResult<List<Category>> getByCategoryName(string categoryName)
         {
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(p => p.categoryName == categoryName), "Kategoriler Listelendi.");
         }
 
-       
 
-        public IDataResult<Category> GetByid(int id)
+
+        public IDataResult<Category> getById(int id)
         {
             return new SuccessDataResult<Category>(_categoryDal.Get(p => p.id == id), "Kategori ID Listelendi.");
         }
 
-        public IDataResult<List<Category>> GetByIsActive(bool operation)
+        public IDataResult<List<Category>> getByIsActive(bool operation)
         {
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(p => p.isActive == operation), "Kategoriler Listelendi.");
         }

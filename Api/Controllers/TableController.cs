@@ -19,10 +19,10 @@ namespace Api.Controllers
         {
             _tableService = tableService;
         }
-        [HttpGet("getall")]
-        public IActionResult GetAll()
+        [HttpGet("getAll")]
+        public IActionResult getAll()
         {
-            var result = _tableService.GetAll();
+            var result = _tableService.getAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -30,31 +30,20 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getalldetails")]
-        public IActionResult GetAllDetails()
+        [HttpGet("getAllDetails")]
+        public IActionResult getAllDetails()
         {
-            var result = _tableService.GetAllDetails();
+            var result = _tableService.getAllDetails();
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("GetByTableNameId")]
-        public IActionResult GetByTableNameId(int tableName)
+        [HttpGet("getByTableNameId")]
+        public IActionResult getByTableNameId(int tableName)
         {
-            var result = _tableService.GetByTableNameId(tableName);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("GetByTableLocationId")]
-        public IActionResult GetByTableLocationId(int tableLocation)
-        {
-            var result = _tableService.GetByTableLocationId(tableLocation);
+            var result = _tableService.getByTableNameId(tableName);
             if (result.Success)
             {
                 return Ok(result);
@@ -62,10 +51,10 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("GetByTableCapacity")]
-        public IActionResult GetByTableCapacity(int tableCapacity)
+        [HttpGet("getByTableLocationId")]
+        public IActionResult getByTableLocationId(int tableLocation)
         {
-            var result = _tableService.GetByTableCapacity(tableCapacity);
+            var result = _tableService.getByTableLocationId(tableLocation);
             if (result.Success)
             {
                 return Ok(result);
@@ -73,10 +62,21 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("GetByIsActive")]
-        public IActionResult GetByIsActive(bool IsActive)
+        [HttpGet("getByTableCapacity")]
+        public IActionResult getByTableCapacity(int tableCapacity)
         {
-            var result = _tableService.GetByIsActive(IsActive);
+            var result = _tableService.getByTableCapacity(tableCapacity);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getByIsActive")]
+        public IActionResult getByIsActive(bool IsActive)
+        {
+            var result = _tableService.getByIsActive(IsActive);
             if (result.Success)
             {
                 return Ok(result);

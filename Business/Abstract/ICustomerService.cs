@@ -9,12 +9,12 @@ namespace Business.Abstract
 {
     public interface ICustomerService
     {
-        IDataResult<List<Customer>> GetAll();
-        IDataResult<List<CustomerDetailsDto>> GetCustomerDetailsDto();
+        IDataResult<List<Customer>> getAll();
+        IDataResult<List<CustomerDetailsDto>> getCustomerDetailsDto();
         IResult Add(Customer customer);
         IResult Delete(Customer customer);
         IResult Update(Customer customer);
-        IDataResult<Customer> GetByPhone(int phoneNumber);
-        IDataResult<Customer> GetByNameAndSurname(string name, string surname);
+        IDataResult<Customer> getByPhone(int phoneNumber);
+        IDataResult<Customer> getByNameAndSurname(string name, string surname);
     }
 }

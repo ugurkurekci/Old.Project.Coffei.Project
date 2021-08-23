@@ -48,7 +48,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<List<Table>> GetAll()
+        public IDataResult<List<Table>> getAll()
         {
             return new SuccessDataResult<List<Table>>(_tableDal.GetAll(), "Masalar Listelendi.");
         }
@@ -58,16 +58,16 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<List<TableDetailsDto>> GetAllDetails()
+        public IDataResult<List<TableDetailsDto>> getAllDetails()
         {
-            return new SuccessDataResult<List<TableDetailsDto>>(_tableDal.GetTableDetails(), "Masalar Listelendi.");
+            return new SuccessDataResult<List<TableDetailsDto>>(_tableDal.getTableDetails(), "Masalar Listelendi.");
         }
 
         [LogAspect(typeof(DatabaseLogger))]
         [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
-        public IDataResult<Table> GetById(int id)
+        public IDataResult<Table> getById(int id)
         {
             throw new NotImplementedException();
         }
@@ -76,7 +76,7 @@ namespace Business.Concrete
         [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
-        public IDataResult<Table> GetByIsActive(bool IsActive)
+        public IDataResult<Table> getByIsActive(bool IsActive)
         {
             return new SuccessDataResult<Table>(_tableDal.Get(p => p.isActive == IsActive), "aktifler listelendi.");
         }
@@ -86,7 +86,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Table> GetByTableCapacity(int tableCapacity)
+        public IDataResult<Table> getByTableCapacity(int tableCapacity)
         {
             return new SuccessDataResult<Table>(_tableDal.Get(p => p.tableCapacity == tableCapacity), "Masa kapasiteleri listelendi.");
         }
@@ -96,7 +96,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Table> GetByTableLocationId(int tableLocation)
+        public IDataResult<Table> getByTableLocationId(int tableLocation)
         {
             return new SuccessDataResult<Table>(_tableDal.Get(p => p.tableLocationId == tableLocation), "listelendi.");
         }
@@ -106,7 +106,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Table> GetByTableNameId(int tableName)
+        public IDataResult<Table> getByTableNameId(int tableName)
         {
             return new SuccessDataResult<Table>(_tableDal.Get(p => p.tableNameId == tableName), "listelendi.");
         }

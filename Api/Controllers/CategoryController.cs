@@ -21,21 +21,21 @@ namespace Api.Controllers
             _categoryService = categoryService;
         }
 
-        [HttpGet("getall")]
+        [HttpGet("getAll")]
 
-        public IActionResult GetAll()
+        public IActionResult getAll()
         {
-            var result = _categoryService.GetAll();
+            var result = _categoryService.getAll();
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("GetByCategoryName")]
-        public IActionResult GetByCategoryName(string search)
+        [HttpGet("getByCategoryName")]
+        public IActionResult getByCategoryName(string search)
         {
-            var result = _categoryService.GetByCategoryName(search);
+            var result = _categoryService.getByCategoryName(search);
             if (result.Success)
             {
                 return Ok(result);
@@ -43,10 +43,10 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("GetByIsActiveName")]
-        public IActionResult GetByIsActiveName(bool operation)
+        [HttpGet("getByIsActive")]
+        public IActionResult getByIsActive(bool operation)
         {
-            var result = _categoryService.GetByIsActive(operation);
+            var result = _categoryService.getByIsActive(operation);
             if (result.Success)
             {
                 return Ok(result);

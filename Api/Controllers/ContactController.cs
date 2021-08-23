@@ -20,9 +20,9 @@ namespace Api.Controllers
             _contactService = contactService;
         }
 
-        [HttpGet("getall")]
+        [HttpGet("getAll")]
 
-        public IActionResult GetAll()
+        public IActionResult getAll()
         {
             var result = _contactService.GetAll();
             if (result.Success)

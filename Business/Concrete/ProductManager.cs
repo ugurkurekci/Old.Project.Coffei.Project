@@ -33,7 +33,7 @@ namespace Business.Concrete
             return new SuccessResult("Ürün eklendi.");
         }
 
-        public IResult AddTransactionalTest(Product product)
+        public IResult addTransactionalTest(Product product)
         {
             throw new NotImplementedException();
         }
@@ -54,7 +54,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<List<Product>> GetAll()
+        public IDataResult<List<Product>> getAll()
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(), "Ürünler Listelendi.");
         }
@@ -64,7 +64,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Product> GetByCategoryId(int category_id)
+        public IDataResult<Product> getByCategoryId(int category_id)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.categoryId == category_id), "Aranan Kategori Listelendi.");
         }
@@ -74,7 +74,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Product> GetById(int id)
+        public IDataResult<Product> getById(int id)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.id == id), "Aranan ID Listelendi.");
         }
@@ -84,7 +84,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Product> GetByProductName(string productName)
+        public IDataResult<Product> getByProductName(string productName)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.productName == productName), "Aranan Ürün adı listelendi.");
         }
@@ -94,7 +94,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Product> GetByProductPrice(double productPrice)
+        public IDataResult<Product> getByProductPrice(double productPrice)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.productPrice == productPrice), "Aranan Ürün fiyatı Listelendi.");
         }
@@ -103,7 +103,7 @@ namespace Business.Concrete
         [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
-        public IDataResult<Product> GetByProductStock(int productStock)
+        public IDataResult<Product> getByProductStock(int productStock)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.productStock == productStock), "Aranan ürün stoğu Listelendi.");
         }
@@ -113,9 +113,9 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<List<ProductDetailsDto>> GetProductDetails(Expression<Func<Product, bool>> filter = null)
+        public IDataResult<List<ProductDetailsDto>> getProductDetails(Expression<Func<Product, bool>> filter = null)
         {
-            return new SuccessDataResult<List<ProductDetailsDto>>(_productDal.GetProductDetails(), "Ürünler Listelendi.");
+            return new SuccessDataResult<List<ProductDetailsDto>>(_productDal.getProductDetails(), "Ürünler Listelendi.");
         }
 
         [LogAspect(typeof(DatabaseLogger))]

@@ -19,10 +19,10 @@ namespace Api.Controllers
         {
             _paymentService = paymentService;
         }
-        [HttpGet("getall")]
-        public IActionResult GetAll()
+        [HttpGet("getAll")]
+        public IActionResult getAll()
         {
-            var result = _paymentService.GetAll();
+            var result = _paymentService.getAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -30,20 +30,20 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getalldetails")]
-        public IActionResult GetAllDetails()
+        [HttpGet("getAllDetails")]
+        public IActionResult getAllDetails()
         {
-            var result = _paymentService.GetAllDetails();
+            var result = _paymentService.getAllDetails();
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("GetByPaymentName")]
-        public IActionResult GetByPaymentName(int paymentName)
+        [HttpGet("getByPaymentName")]
+        public IActionResult getByPaymentName(int paymentName)
         {
-            var result = _paymentService.GetByPaymentName(paymentName);
+            var result = _paymentService.getByPaymentName(paymentName);
             if (result.Success)
             {
                 return Ok(result);
@@ -51,10 +51,10 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("GetById")]
-        public IActionResult GetById(int id)
+        [HttpGet("getById")]
+        public IActionResult getById(int id)
         {
-            var result = _paymentService.GetById(id);
+            var result = _paymentService.getById(id);
             if (result.Success)
             {
                 return Ok(result);
