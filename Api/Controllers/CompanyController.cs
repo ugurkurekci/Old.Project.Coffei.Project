@@ -20,10 +20,10 @@ namespace Api.Controllers
             _companyService = companyService;
         }
 
-        [HttpGet("getall")]
-        public IActionResult GetAll()
+        [HttpGet("getAll")]
+        public IActionResult getAll()
         {
-            var result = _companyService.GetAll();
+            var result = _companyService.getAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -31,10 +31,10 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("GetById")]
-        public IActionResult GetById(int id)
+        [HttpGet("getById")]
+        public IActionResult getById(int id)
         {
-            var result = _companyService.GetById(id);
+            var result = _companyService.getById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -42,10 +42,10 @@ namespace Api.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("GetByCompanyName")]
-        public IActionResult GetByCompanyName(string companyName)
+        [HttpGet("getByCompanyName")]
+        public IActionResult getByCompanyName(string companyName)
         {
-            var result = _companyService.GetByCompanyName(companyName);
+            var result = _companyService.getByCompanyName(companyName);
             if (result.Success)
             {
                 return Ok(result);

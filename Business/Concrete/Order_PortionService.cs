@@ -14,11 +14,11 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class Order_PortionManager : IOrder_PortionService
+    public class Order_PortionService : IOrder_PortionService
     {
         IOrder_PortionDal _order_PortionDal;
 
-        public Order_PortionManager(IOrder_PortionDal order_PortionDal)
+        public Order_PortionService(IOrder_PortionDal order_PortionDal)
         {
             _order_PortionDal = order_PortionDal;
         }
@@ -49,7 +49,7 @@ namespace Business.Concrete
         [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
-        public IDataResult<List<Order_Portion>> GetAll()
+        public IDataResult<List<Order_Portion>> getAll()
         {
             return new SuccessDataResult<List<Order_Portion>>(_order_PortionDal.GetAll(), "Porsiyonlar Listelendi.");
         }
@@ -58,7 +58,7 @@ namespace Business.Concrete
         [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
-        public IDataResult<Order_Portion> GetByid(int id)
+        public IDataResult<Order_Portion> getById(int id)
         {
             return new SuccessDataResult<Order_Portion>(_order_PortionDal.Get(p => p.id == id), "Porsiyon ID Listelendi.");
         }

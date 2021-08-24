@@ -16,11 +16,11 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class CustomerManager : ICustomerService
+    public class CustomerService : ICustomerService
     {
         ICustomerDal _customerDal;
 
-        public CustomerManager(ICustomerDal customerDal)
+        public CustomerService(ICustomerDal customerDal)
         {
             _customerDal = customerDal;
         }
@@ -61,7 +61,7 @@ namespace Business.Concrete
       //  [SecuredOperation("Admin")]
 
 
-        public IDataResult<List<Customer>> GetAll()
+        public IDataResult<List<Customer>> getAll()
         {
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), "Müşteri Listelendi.");
         }
@@ -73,7 +73,7 @@ namespace Business.Concrete
       //  [SecuredOperation("Admin")]
 
 
-        public IDataResult<Customer> GetByNameAndSurname(string name, string surname)
+        public IDataResult<Customer> getByNameAndSurname(string name, string surname)
         {
             return new SuccessDataResult<Customer>(_customerDal.Get(p => p.customerName == name || p.customerSurname == surname), "İsim ve Soyisim Listelendi.");
         }
@@ -84,12 +84,12 @@ namespace Business.Concrete
         [CacheAspect(duration: 10)]
        // [SecuredOperation("Admin")]
 
-        public IDataResult<Customer> GetByPhone(int phoneNumber)
+        public IDataResult<Customer> getByPhone(int phoneNumber)
         {
             return new SuccessDataResult<Customer>(_customerDal.Get(p => p.phoneId == phoneNumber), "Telefon Numarası Listelendi");
         }
 
-        public IDataResult<List<CustomerDetailsDto>> GetCustomerDetailsDto()
+        public IDataResult<List<CustomerDetailsDto>> getCustomerDetailsDto()
         {
             return new SuccessDataResult<List<CustomerDetailsDto>>(_customerDal.GetCustomerDetails(), "Müşteri Listelendi.");
         }

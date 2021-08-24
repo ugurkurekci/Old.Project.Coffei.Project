@@ -13,11 +13,11 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class TableManager : ITableService
+    public class TableService : ITableService
     {
         ITableDal _tableDal;
 
-        public TableManager(ITableDal tableDal)
+        public TableService(ITableDal tableDal)
         {
             _tableDal = tableDal;
         }

@@ -15,12 +15,12 @@ using System.Threading;
 
 namespace Business.Concrete
 {
-    public class CompanyManager : ICompanyService
+    public class CompanyService : ICompanyService
     {
 
         ICompanyDal _companyDal;
 
-        public CompanyManager(ICompanyDal companyDal)
+        public CompanyService(ICompanyDal companyDal)
         {
             _companyDal = companyDal;
         }
@@ -58,7 +58,7 @@ namespace Business.Concrete
         [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
-        public IDataResult<List<Company>> GetAll()
+        public IDataResult<List<Company>> getAll()
         {
             Thread.Sleep(3000);
             return new SuccessDataResult<List<Company>>(_companyDal.GetAll(), "Firmalar Listelendi.");
@@ -68,7 +68,7 @@ namespace Business.Concrete
         [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
-        public IDataResult<List<Company>> GetByCompanyName(string companyName)
+        public IDataResult<List<Company>> getByCompanyName(string companyName)
         {
             return new SuccessDataResult<List<Company>>(_companyDal.GetAll(p => p.companyName == companyName), "Aranan Firma Listelendi.");
 
@@ -79,7 +79,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Company> GetById(int id)
+        public IDataResult<Company> getById(int id)
         {
             return new SuccessDataResult<Company>(_companyDal.Get(p => p.id == id), "Aranan Firma ID Listelendi.");
         }

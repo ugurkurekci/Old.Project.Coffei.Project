@@ -25,7 +25,7 @@ namespace NetCoreWebMvc.Controllers
         public ActionResult Index()
         {
 
-            var get = _categoryService.GetAll().Data;
+            var get = _categoryService.getAll().Data;
             return View(get);
 
         }
@@ -68,7 +68,7 @@ namespace NetCoreWebMvc.Controllers
         {
 
             var update = _categoryService.Update(category);
-            var id2 = _categoryService.GetByid(id).Data;
+            var id2 = _categoryService.getById(id).Data;
             if (update.Success)
             {
 
@@ -84,7 +84,7 @@ namespace NetCoreWebMvc.Controllers
         public IActionResult Deleted(int id)
         {
 
-            var id2 = _categoryService.GetByid(id).Data;
+            var id2 = _categoryService.getById(id).Data;
             _categoryService.Delete(id2);
             return RedirectToAction("Index");
         }

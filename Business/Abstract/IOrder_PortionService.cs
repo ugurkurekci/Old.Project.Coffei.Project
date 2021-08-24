@@ -8,8 +8,8 @@ namespace Business.Abstract
 {
     public interface IOrder_PortionService
     {
-        IDataResult<List<Order_Portion>> GetAll();
-        IDataResult<Order_Portion> GetByid(int id);
+        IDataResult<List<Order_Portion>> getAll();
+        IDataResult<Order_Portion> getById(int id);
 
         IResult Add(Order_Portion order_Portion);
         IResult Delete(Order_Portion order_Portion);

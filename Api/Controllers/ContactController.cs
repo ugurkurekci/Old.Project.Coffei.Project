@@ -24,7 +24,7 @@ namespace Api.Controllers
 
         public IActionResult getAll()
         {
-            var result = _contactService.GetAll();
+            var result = _contactService.getAll();
             if (result.Success)
             {
                 return Ok(result);

@@ -24,10 +24,10 @@ namespace NetCoreWebMvc.Controllers
 
         public IActionResult Index()
         {
-            var categoryresult = _categoryService.GetAll().Data.Count();
-            var companyresult = _companyService.GetAll().Data.Count();
-            var ordertyperesult = _order_TypeService.GetAll().Data.Count();
-            var orderportionresult = _order_PortionService.GetAll().Data.Count();
+            var categoryresult = _categoryService.getAll().Data.Count();
+            var companyresult = _companyService.getAll().Data.Count();
+            var ordertyperesult = _order_TypeService.getAll().Data.Count();
+            var orderportionresult = _order_PortionService.getAll().Data.Count();
             ViewBag.r1 = categoryresult;
             ViewBag.r2 = companyresult;
             ViewBag.r3 = ordertyperesult;

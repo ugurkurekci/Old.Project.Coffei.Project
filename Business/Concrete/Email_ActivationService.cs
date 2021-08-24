@@ -12,12 +12,12 @@ using System.Text;
 namespace Business.Concrete
 {
 
-    public class Email_ActivationManager : IEmail_ActivationService
+    public class Email_ActivationService : IEmail_ActivationService
     {
         IEmail_ActivationDal _email_ActivationDal;
 
 
-        public Email_ActivationManager(IEmail_ActivationDal email_ActivationDal)
+        public Email_ActivationService(IEmail_ActivationDal email_ActivationDal)
         {
             _email_ActivationDal = email_ActivationDal;
 
@@ -25,12 +25,12 @@ namespace Business.Concrete
 
 
 
-        public IDataResult<List<Email_Activation>> GetAll()
+        public IDataResult<List<Email_Activation>> getAll()
         {
             return new SuccessDataResult<List<Email_Activation>>(_email_ActivationDal.GetAll(), "Email listelendi");
         }
 
-        public IDataResult<Email_Activation> GetByCode(string code)
+        public IDataResult<Email_Activation> getByCode(string code)
         {
             return new SuccessDataResult<Email_Activation>(_email_ActivationDal.Get(p => p.code == code), "Email Code geldi.");
         }

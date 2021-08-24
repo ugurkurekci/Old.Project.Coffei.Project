@@ -14,12 +14,12 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class EmailManager : IEmailService
+    public class EmailService : IEmailService
     {
         IEmailDal _emailDal;
         IEmail_ActivationDal _ActivationDal;
 
-        public EmailManager(IEmailDal emailDal, IEmail_ActivationDal ActivationDal)
+        public EmailService(IEmailDal emailDal, IEmail_ActivationDal ActivationDal)
         {
             _emailDal = emailDal;
             _ActivationDal = ActivationDal;
@@ -57,7 +57,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<List<Email>> GetAll()
+        public IDataResult<List<Email>> getAll()
         {
             return new SuccessDataResult<List<Email>>(_emailDal.GetAll(), "Email Listelendi.");
         }

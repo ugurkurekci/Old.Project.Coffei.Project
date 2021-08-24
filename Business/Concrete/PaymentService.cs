@@ -13,11 +13,11 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class PaymentManager : IPaymentService
+    public class PaymentService : IPaymentService
     {
         IPaymentDal _paymentDal;
 
-        public PaymentManager(IPaymentDal paymentDal)
+        public PaymentService(IPaymentDal paymentDal)
         {
             _paymentDal = paymentDal;
         }
@@ -47,7 +47,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<List<Payment>> GetAll()
+        public IDataResult<List<Payment>> getAll()
         {
             return new SuccessDataResult<List<Payment>>(_paymentDal.GetAll(), "Ödemeler Listelendi.");
         }
@@ -57,7 +57,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<List<PaymentDetailsDto>> GetAllDetails()
+        public IDataResult<List<PaymentDetailsDto>> getAllDetails()
         {
             return new SuccessDataResult<List<PaymentDetailsDto>>(_paymentDal.GetPaymentDetails(), "Ödemeler Listelendi.");
         }
@@ -67,7 +67,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Payment> GetById(int id)
+        public IDataResult<Payment> getById(int id)
         {
             return new SuccessDataResult<Payment>(_paymentDal.Get(p => p.id == id), "Aranan ID Listelendi.");
         }
@@ -77,7 +77,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Payment> GetByPaymentName(int paymentName)
+        public IDataResult<Payment> getByPaymentName(int paymentName)
         {
             return new SuccessDataResult<Payment>(_paymentDal.Get(p => p.paymentNameId == paymentName), "Aranan Ödeme Listelendi.");
         }

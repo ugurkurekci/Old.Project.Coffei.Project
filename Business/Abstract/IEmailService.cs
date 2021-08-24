@@ -8,7 +8,7 @@ namespace Business.Abstract
 {
     public interface IEmailService
     {
-        IDataResult<List<Email>> GetAll();
+        IDataResult<List<Email>> getAll();
         IResult Add(Email email);
         IResult Delete(Email email);
         IResult Update(Email email);

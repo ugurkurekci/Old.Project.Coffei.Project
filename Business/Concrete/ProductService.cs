@@ -14,11 +14,11 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class ProductManager : IProductService
+    public class ProductService : IProductService
     {
         IProductDal _productDal;
 
-        public ProductManager(IProductDal productDal)
+        public ProductService(IProductDal productDal)
         {
             _productDal = productDal;
         }

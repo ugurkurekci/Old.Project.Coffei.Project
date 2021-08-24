@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfTableDal : EfEntityRepositoryBase<Table, CoffeiSoftContext>, ITableDal
     {
-        public List<TableDetailsDto> GetTableDetails(Expression<Func<Table, bool>> filter = null)
+        public List<TableDetailsDto> getTableDetails(Expression<Func<Table, bool>> filter = null)
         {
             using (CoffeiSoftContext contexts = new CoffeiSoftContext())
             {

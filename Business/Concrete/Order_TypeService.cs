@@ -14,11 +14,11 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class Order_TypeManager : IOrder_TypeService
+    public class Order_TypeService : IOrder_TypeService
     {
         IOrder_TypeDal _order_TypeDal;
 
-        public Order_TypeManager(IOrder_TypeDal order_TypeDal)
+        public Order_TypeService(IOrder_TypeDal order_TypeDal)
         {
             _order_TypeDal = order_TypeDal;
         }
@@ -49,12 +49,12 @@ namespace Business.Concrete
         [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
-        public IDataResult<List<Order_Type>> GetAll()
+        public IDataResult<List<Order_Type>> getAll()
         {
             return new SuccessDataResult<List<Order_Type>>(_order_TypeDal.GetAll(), "Tip Listelendi.");
         }
 
-        public IDataResult<Order_Type> GetByid(int id)
+        public IDataResult<Order_Type> getById(int id)
         {
             return new SuccessDataResult<Order_Type>(_order_TypeDal.Get(p => p.id == id), "Tip ID Listelendi.");
         }

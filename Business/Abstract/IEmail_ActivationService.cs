@@ -9,9 +9,9 @@ namespace Business.Abstract
 {
     public interface IEmail_ActivationService
     {
-        IDataResult<List<Email_Activation>> GetAll();
+        IDataResult<List<Email_Activation>> getAll();
 
-        IDataResult<Email_Activation> GetByCode(string code);
+        IDataResult<Email_Activation> getByCode(string code);
         IResult Send(string mail);
 
         IResult Info(string contact);

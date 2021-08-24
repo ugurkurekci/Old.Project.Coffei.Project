@@ -8,9 +8,9 @@ namespace Business.Abstract
 {
     public interface ICompanyService
     {
-        IDataResult<List<Company>> GetAll();
-        IDataResult<Company> GetById(int id);
-        IDataResult<List<Company>> GetByCompanyName(string companyName);
+        IDataResult<List<Company>> getAll();
+        IDataResult<Company> getById(int id);
+        IDataResult<List<Company>> getByCompanyName(string companyName);
         IResult Add(Company company);
         IResult Delete(Company company);
         IResult Update(Company company);

@@ -13,12 +13,12 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class ContactManager : IContactService
+    public class ContactService : IContactService
     {
         IContactDal _contactDal;
         IEmail_ActivationService _email_ActivationService;
 
-        public ContactManager(IContactDal contactDal, IEmail_ActivationService email_ActivationService)
+        public ContactService(IContactDal contactDal, IEmail_ActivationService email_ActivationService)
         {
             _contactDal = contactDal;
             _email_ActivationService = email_ActivationService;
@@ -49,7 +49,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<List<Contact>> GetAll()
+        public IDataResult<List<Contact>> getAll()
         {
             return new SuccessDataResult<List<Contact>>(_contactDal.GetAll(), "Mesajlar Listelendi.");
 
@@ -60,7 +60,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<List<Contact>> GetByEmail(string email)
+        public IDataResult<List<Contact>> getByEmail(string email)
         {
             return new SuccessDataResult<List<Contact>>(_contactDal.GetAll(p => p.email == email), "Mesaj ID Listelendi.");
         }
@@ -71,7 +71,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Contact> GetByid(int id)
+        public IDataResult<Contact> getById(int id)
         {
             return new SuccessDataResult<Contact>(_contactDal.Get(p => p.id == id), "Mesaj ID Listelendi.");
         }

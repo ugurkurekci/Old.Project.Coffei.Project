@@ -11,12 +11,12 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class UserManager : IUserService
+    public class UserService : IUserService
     {
         IUserDal _userDal;
         IEmail_ActivationService _email_ActivationService;
 
-        public UserManager(IUserDal userDal, IEmail_ActivationService email_ActivationService)
+        public UserService(IUserDal userDal, IEmail_ActivationService email_ActivationService)
         {
             _userDal = userDal;
             _email_ActivationService = email_ActivationService;
@@ -30,14 +30,14 @@ namespace Business.Concrete
 
 
 
-        public User GetByMail(string email)
+        public User getByMail(string email)
         {
             return _userDal.Get(p => p.email == email);
         }
 
 
 
-        public List<Operation_Claim> GetClaims(User user)
+        public List<Operation_Claim> getClaims(User user)
         {
             return _userDal.GetClaims(user);
         }

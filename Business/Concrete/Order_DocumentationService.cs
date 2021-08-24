@@ -15,11 +15,11 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class Order_DocumentationManager : IOrder_DocumentationService
+    public class Order_DocumentationService : IOrder_DocumentationService
     {
         IOrder_DocumentationDal _order_DocumentationDal;
 
-        public Order_DocumentationManager(IOrder_DocumentationDal order_DocumentationDal)
+        public Order_DocumentationService(IOrder_DocumentationDal order_DocumentationDal)
         {
             _order_DocumentationDal = order_DocumentationDal;
         }
@@ -52,7 +52,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<List<Order_Documentation>> GetAll()
+        public IDataResult<List<Order_Documentation>> getAll()
         {
 
             return new SuccessDataResult<List<Order_Documentation>>(_order_DocumentationDal.GetAll(), "Listelendi.");
@@ -65,7 +65,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<List<Order_DocumentationDto>> GetAllDetails()
+        public IDataResult<List<Order_DocumentationDto>> getAllDetails()
         {
             return new SuccessDataResult<List<Order_DocumentationDto>>(_order_DocumentationDal.GetOrderDocumentationDetails(), "Listelendi.");
         }
@@ -75,7 +75,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Order_Documentation> GetByDiscount(int discount)
+        public IDataResult<Order_Documentation> getByDiscount(int discount)
         {
             return new SuccessDataResult<Order_Documentation>(_order_DocumentationDal.Get(p => p.discount == discount), "Satış İndirimler Listelendi.");
         }
@@ -85,7 +85,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Order_Documentation> GetById(int id)
+        public IDataResult<Order_Documentation> getById(int id)
         {
             return new SuccessDataResult<Order_Documentation>(_order_DocumentationDal.Get(p => p.id == id), "Satış ID Listelendi.");
         }
@@ -95,7 +95,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
 
-        public IDataResult<Order_Documentation> GetByOrderDate(DateTime orderDate)
+        public IDataResult<Order_Documentation> getByOrderDate(DateTime orderDate)
         {
             return new SuccessDataResult<Order_Documentation>(_order_DocumentationDal.Get(p => p.orderDate == orderDate), "Satış Tarih Listelendi.");
         }
@@ -104,7 +104,7 @@ namespace Business.Concrete
         [LogAspect(typeof(FileLogger))]
         [PerformanceAspect(5)]
         [CacheAspect(duration: 10)]
-        public IDataResult<Order_Documentation> GetByProductName(int productName)
+        public IDataResult<Order_Documentation> getByProductName(int productName)
         {
             return new SuccessDataResult<Order_Documentation>(_order_DocumentationDal.Get(p => p.orderProductId == productName), "Satış productId Listelendi.");
 
