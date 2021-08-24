@@ -4,7 +4,7 @@
 
 
 .site-header {
-    background-color: #beb5b5;
+    background-color: #f00;
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
 }
@@ -16,6 +16,6 @@
     }
 
         .site-header a:hover {
-            color: #fff;
+            color: #f00;
             text-decoration: none;
         }

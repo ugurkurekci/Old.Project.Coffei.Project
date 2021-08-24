@@ -19,9 +19,6 @@
     <link href="~/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/lib/FileExport/css/buttons.dataTables.min.css" rel="stylesheet" />
 
-
-
-
 </head>
 <body id="page-top">
 
@@ -29,14 +26,14 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <li>
+        <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
+            <li style="background-color:black">
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../Admin/Index">
                     <div class="sidebar-brand-icon rotate-n-15">
-                        <i class="fas fa-laugh-wink"></i>
+                        <i style="color:aqua" class="fas fa-laugh-wink"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">CoffeiSoft  <sup>Admin Paneli</sup></div>
+                    <div class="sidebar-brand-text mx-3" style="color:yellow">CoffeiSoft  <sup style="color:yellow">Admin Paneli</sup></div>
                 </a>
 
                 <!-- Divider -->
@@ -45,49 +42,62 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="@Url.Action("Index","Admin")">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Gösterge Paneli</span>
+                    <i style="color:black" class="fas fa-fw fa-tachometer-alt"></i>
+                    <span style="color:black">Arayüz Paneli</span>
                 </a>
             </li>
             <li>
-                <hr class="sidebar-divider">
+                <hr style="color:black" class="sidebar-divider">
 
-                <div class="sidebar-heading">
-                    Genel
+                <div style="color:black" class="sidebar-heading">
+                    
                 </div>
 
 
             </li>
 
 
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategory"
-                   aria-expanded="true" aria-controls="collapseCategory">
-                    <i class="fas fa-layer-group"></i>
-                    <span>Kategori</span>
-                </a>
-                <div id="collapseCategory" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="@Url.Action("Index","Category")"><i class="fas fa-list"></i> Liste</a>
-                        <a class="collapse-item" href="@Url.Action("Add","Category")"><i class="fas fa-plus"></i> Ekle</a>
+            <li class="nav-item active">
+                <div>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMenuItem"
+                       aria-expanded="true" aria-controls="collapseMenuItem">
+                        <i style="color:black" class="fas fa-layer-group"></i>
+                        <span style="color:black">Genel Bilgiler</span>
+                    </a>
+                    <div id="collapseMenuItem" class="collapse">
+                        <a style="color:black" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategory"
+                           aria-expanded="true" aria-controls="collapseCategory">
+                            <i style="color:black" class="fas fa-layer-group"></i>
+                            <span style="color:black">Kategori İşlemleri</span>
+                        </a>
                     </div>
+                    <div id="collapseCategory" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded-0">
+                            <a class="collapse-item" href="@Url.Action("Index","Category")"><i class="fas fa-list"></i> Kategori Listesi</a>
+                            <a class="collapse-item" href="@Url.Action("Add","Category")"><i class="fas fa-plus"></i> Kategori Ekle</a>
+                        </div>
+                    </div>
+
+
+                    <div id="collapseMenuItem" class="collapse">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompany"
+                           aria-expanded="true" aria-controls="collapseCompany">
+                            <i style="color:black" class="fas fa-layer-group"></i>
+                            <span style="color:black">Firma İşlemleri</span>
+                        </a>
+                    </div>
+                    <div id="collapseCompany" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded-0">
+                            <a class="collapse-item" href="@Url.Action("Index","Company")"><i class="fas fa-list"></i> Firma Liste</a>
+                            <a class="collapse-item" href="@Url.Action("Add","Company")"><i class="fas fa-plus"></i> Firma Ekle</a>
+                        </div>
+                    </div>
+
                 </div>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompany"
-                   aria-expanded="true" aria-controls="collapseCompany">
-                    <i class="fas fa-building"></i>
-                    <span>Firma</span>
-                </a>
-                <div id="collapseCompany" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="@Url.Action("Index","Company")"><i class="fas fa-list"></i> Liste</a>
-                        <a class="collapse-item" href="@Url.Action("Add","Company")"><i class="fas fa-plus"></i> Ekle</a>
-                    </div>
-                </div>
-            </li>
+
+
 
             <li>
                 <hr class="sidebar-divider">
@@ -153,10 +163,12 @@
                 <hr class="sidebar-divider d-none d-md-block">
             </li>
             <!-- Sidebar Toggler (Sidebar) -->
+            <li class="text-center d-none d-md-inline">
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+            </li>
 
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
 
         </ul>
 
