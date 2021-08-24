@@ -38,7 +38,7 @@ namespace Core.DataAccess.EntityFramework
             {
                 return orderdb.Set<TEntity>().SingleOrDefault(filter);
             }
-        }
+        }    
 
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
