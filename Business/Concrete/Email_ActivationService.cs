@@ -14,7 +14,7 @@ namespace Business.Concrete
 
     public class Email_ActivationService : IEmail_ActivationService
     {
-        IEmail_ActivationDal _email_ActivationDal;
+        readonly IEmail_ActivationDal _email_ActivationDal;
 
 
         public Email_ActivationService(IEmail_ActivationDal email_ActivationDal)
@@ -41,31 +41,27 @@ namespace Business.Concrete
 
         public IResult Send(string mail)
         {
-            string Code = "";
-
-
             {
 
 
                 string bizimMail = "*****s321@gmail.com";
                 string sifre = "******z123";
-                bool result = false;
-
                 Random rastgele = new Random();
                 string harfler = "ABCDEFGHIJKLMNOPRSTUVYZWX1234567890";
-                Code = "";
+                string Code = "";
                 for (int i = 0; i < 4; i++)
                 {
                     Code += harfler[rastgele.Next(harfler.Length)];
                 }
 
                 MailMessage mesaj = new MailMessage(bizimMail, mail, "Onay Kodu", "Üyeliğinizin onaylanması için geçerli onay kodunuz: '" + Code + "'\n\n Uğur Kürekci Ekibi");
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                smtp.EnableSsl = true;
-                smtp.UseDefaultCredentials = true;
-                smtp.Credentials = new NetworkCredential(bizimMail, sifre);
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587)
+                {
+                    EnableSsl = true,
+                    UseDefaultCredentials = true,
+                    Credentials = new NetworkCredential(bizimMail, sifre)
+                };
                 smtp.Send(mesaj);
-                result = true;
                 if (Code != null)
                 {
 
@@ -84,10 +80,12 @@ namespace Business.Concrete
                 string bizimMail = "*****s321@gmail.com";
                 string sifre = "******z123";
                 MailMessage mesaj = new MailMessage(bizimMail, contact, "Bizim iletişim kurduğunuz için teşekkürler.", "Yakın zaman içerisinde mesajınıza geri dönüş sağlanacaktır. '" + contact + "'\n\n Uğur Kürekci Ekibi");
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                smtp.EnableSsl = true;
-                smtp.UseDefaultCredentials = true;
-                smtp.Credentials = new NetworkCredential(bizimMail, sifre);
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587)
+                {
+                    EnableSsl = true,
+                    UseDefaultCredentials = true,
+                    Credentials = new NetworkCredential(bizimMail, sifre)
+                };
                 smtp.Send(mesaj);
                 if (contact != null)
                 {
@@ -116,15 +114,13 @@ namespace Business.Concrete
                         mail.Body = MailIcerik; // mailin içeriği
                                                 // göndereceğimiz maili hazırladık.
 
-                        using (SmtpClient smtp = new SmtpClient(Pop3Host, Pop3Port)) // smtp servere bağlandık
-                        {
-                            smtp.UseDefaultCredentials = false; // varsayılan girişi kullanmadık
-                            smtp.EnableSsl = true; // ssl kullanımına izin verdik
-                            smtp.Credentials = (NetworkCredential)cred; // server üzerindeki oturumumuzu yukarıda belirttiğimiz NetworkCredential üzerinden sağladık.
-                            smtp.Send(mail); // mailimizi gönderdik.
-                                             // smtp yani Simple Mail Transfer Protocol üzerinden maili gönderiyoruz.
+                        using SmtpClient smtp = new SmtpClient(Pop3Host, Pop3Port); // smtp servere bağlandık
+                        smtp.UseDefaultCredentials = false; // varsayılan girişi kullanmadık
+                        smtp.EnableSsl = true; // ssl kullanımına izin verdik
+                        smtp.Credentials = (NetworkCredential)cred; // server üzerindeki oturumumuzu yukarıda belirttiğimiz NetworkCredential üzerinden sağladık.
+                        smtp.Send(mail); // mailimizi gönderdik.
+                                         // smtp yani Simple Mail Transfer Protocol üzerinden maili gönderiyoruz.
 
-                        }
                     }
                     return true;
                 }
